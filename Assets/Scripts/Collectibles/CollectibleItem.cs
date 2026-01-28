@@ -1,7 +1,7 @@
 using UnityEngine;
 
-/** Implementacion base de un objeto que el jugador puede recoger */
-[RequireComponent(typeof(Rigidbody), typeof(SphereCollider))]
+/** Implementacion base de un objeto que el jugador puede recoger y soltar */
+[RequireComponent(typeof(Rigidbody), typeof(Collider))]
 public class CollectibleItem : MonoBehaviour, ICollectible
 {
     private Rigidbody cuerpoRigido;
@@ -13,8 +13,9 @@ public class CollectibleItem : MonoBehaviour, ICollectible
         cuerpoRigido = GetComponent<Rigidbody>();
         colisionador = GetComponent<Collider>();
         
+        /** Aseguramos estado inicial fisico */
         cuerpoRigido.isKinematic = false;
-        colisionador.isTrigger = false;
+        colisionador.enabled = true;
     }
 
     /** Desactiva la fisica y emparenta el objeto al punto de anclaje */
@@ -31,6 +32,20 @@ public class CollectibleItem : MonoBehaviour, ICollectible
         transform.localRotation = Quaternion.identity;
 
         Debug.Log($"Objeto {gameObject.name} recolectado!");
+    }
+
+    /** Prepara el objeto para volver a ser recolectable despues de caer */
+    public void Soltar()
+    {
+        if (!estaRecolectado) return;
+
+        estaRecolectado = false;
+        transform.SetParent(null);
+        
+        cuerpoRigido.isKinematic = false;
+        colisionador.enabled = true;
+        
+        Debug.Log($"Objeto {gameObject.name} soltado y listo para re-recoleccion.");
     }
 
     public GameObject ObtenerGameObject()
