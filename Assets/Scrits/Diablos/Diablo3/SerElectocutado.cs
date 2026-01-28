@@ -1,40 +1,37 @@
 using UnityEngine;
-using TMPro;
+using System;
 
-//SCRIT PARA EL JUGADOR
-
-public class SerElectocutado : MonoBehaviour, IElectrocutable
+public class SerElectrocutado : MonoBehaviour, IElectrocutable
 {
-    [SerializeField] private float cantHielos = 5;
-    private float maxHielos = 5;
-    [SerializeField] private TextMeshProUGUI textoHielos;
+    [SerializeField] private int vidaInicial = 5;
+    private int vidaActual;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public event Action<int> AlCambiarVida;
+    public event Action AlMorir;
+
     void Start()
     {
-        maxHielos = cantHielos;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        textoHielos.text = cantHielos.ToString("0");
+        vidaActual = vidaInicial;
+        AlCambiarVida?.Invoke(vidaActual); 
     }
 
     public void SoltarHielos()
     {
-        cantHielos -= 1;
-        Debug.Log("Pedrito me electocutaste :d");
-        if (cantHielos <= 0)
+        if (vidaActual <= 0) return;
+
+        vidaActual--;
+
+        AlCambiarVida?.Invoke(vidaActual); 
+
+        if (vidaActual <= 0)
         {
             Morir();
-            cantHielos = 0;
         }
     }
 
     public void Morir()
     {
-        Debug.Log("perdio todos los hielos jaja q bobo");
-        //Destroy(gameObject);
+        Debug.Log("Lógica: El jugador ha muerto.");
+        AlMorir?.Invoke();
     }
 }
