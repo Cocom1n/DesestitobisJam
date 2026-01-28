@@ -31,7 +31,7 @@ public class CollectibleItem : MonoBehaviour, ICollectible
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
 
-        Debug.Log($"Objeto {gameObject.name} recolectado!");
+        Debug.Log($"Objeto {gameObject.name} recolectado");
     }
 
     /** Prepara el objeto para volver a ser recolectable despues de caer */
@@ -45,7 +45,7 @@ public class CollectibleItem : MonoBehaviour, ICollectible
         cuerpoRigido.isKinematic = false;
         colisionador.enabled = true;
         
-        Debug.Log($"Objeto {gameObject.name} soltado y listo para re-recoleccion.");
+        Debug.Log($"Objeto {gameObject.name} soltado");
     }
 
     public GameObject ObtenerGameObject()
