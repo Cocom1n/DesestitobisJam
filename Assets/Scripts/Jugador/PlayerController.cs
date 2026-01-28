@@ -4,7 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
-    private PlayerMovement movement;
+    //private PlayerMovement movement;
+    private MovimientoJugadorRecto movement;
     private PlayerJump jump;
     private PlayerRotation rotation;
     private IMover motor;
@@ -15,7 +16,8 @@ public class PlayerController : MonoBehaviour
         input = GetComponent<IPlayerInput>();
         motor = GetComponent<IMover>();
 
-        movement = GetComponent<PlayerMovement>();
+        //movement = GetComponent<PlayerMovement>();
+        movement = GetComponent<MovimientoJugadorRecto>();
         jump = GetComponent<PlayerJump>();
         rotation = GetComponent<PlayerRotation>();
     }
