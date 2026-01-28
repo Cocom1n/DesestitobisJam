@@ -1,7 +1,7 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 /** Maneja la interaccion y recoleccion de objetos usando un volumen de capsula ajustable */
-public class InteractorJugador : MonoBehaviour
+public class InteractorJugador : MonoBehaviour, IAgarraObjetos
 {
     [Header("Configuracion de Capsula")]
     [SerializeField] private float radioDeteccion = 0.32f;
@@ -10,12 +10,20 @@ public class InteractorJugador : MonoBehaviour
     [SerializeField] private float desfaseVertical = -0.72f;
     [SerializeField] private LayerMask capaRecolectables;
 
+    [Header("Configuracion de Desprendimiento")]
+    [SerializeField] private float fuerzaImpactoMin = 2f;
+    [SerializeField] private float fuerzaImpactoMax = 4f;
+    [SerializeField] private float torqueImpacto = 10f;
+
     [Header("Referencias")]
     [SerializeField] private Transform puntoMano;
 
     private IPlayerInput entrada;
     private ICollectible objetoSostenido;
     
+    /** Implementacion de IAgarraObjetos */
+    public bool TieneObjeto => objetoSostenido != null;
+
     /** Buffer para evitar Garbage Collection (GC) */
     private readonly Collider[] _bufferColisionadores = new Collider[5];
 
@@ -31,9 +39,10 @@ public class InteractorJugador : MonoBehaviour
 
     private void Update()
     {
-        if (entrada == null || objetoSostenido != null) return;
+        if (entrada == null) return;
 
-        if (entrada.InteraccionPresionada)
+        /** Solo intentamos recolectar si no tenemos nada en la mano */
+        if (!TieneObjeto && entrada.InteraccionPresionada)
         {
             IntentarRecolectar();
         }
@@ -42,30 +51,65 @@ public class InteractorJugador : MonoBehaviour
     /** Busca objetos recolectables usando una capsula con posicion ajustable */
     private void IntentarRecolectar()
     {
-        CalcularCapsula(out Vector3 puntoBase, out Vector3 puntoSuperior);
+        CalcularCapsula(out Vector3 _puntoBase, out Vector3 _puntoSuperior);
 
-        int cantidad = Physics.OverlapCapsuleNonAlloc(
-            puntoBase,
-            puntoSuperior,
+        int _cantidad = Physics.OverlapCapsuleNonAlloc(
+            _puntoBase,
+            _puntoSuperior,
             radioDeteccion,
             _bufferColisionadores,
             capaRecolectables
         );
 
-        for (int i = 0; i < cantidad; i++)
+        for (int _i = 0; _i < _cantidad; _i++)
         {
-            if (_bufferColisionadores[i].TryGetComponent(out ICollectible recolectable))
+            if (_bufferColisionadores[_i].TryGetComponent(out ICollectible _recolectable))
             {
-                objetoSostenido = recolectable;
+                objetoSostenido = _recolectable;
                 objetoSostenido.Recolectar(puntoMano);
                 return;
             }
         }
     }
 
-    /** Calcula los puntos base y superior de la cápsula */
+    /** IAgarraObjetos: El Diablo llama a este metodo para quitar el objeto */
+    public void PerderObjeto()
+    {
+        if (objetoSostenido == null) return;
+
+        /** Guardar referencia temporal para aplicar fuerzas */
+        GameObject _item = objetoSostenido.ObtenerGameObject();
+        Rigidbody _rb = _item.GetComponent<Rigidbody>();
+
+        /** Soltar mediante la interfaz del item */
+        objetoSostenido.Soltar();
+        objetoSostenido = null;
+
+        /** Aplicar un golpe aleatorio al objeto, NO al jugador */
+        if (_rb != null)
+        {
+            Vector3 _direccionAleatoria = (Vector3.up + Random.insideUnitSphere * 0.5f).normalized;
+            float _fuerza = Random.Range(fuerzaImpactoMin, fuerzaImpactoMax);
+            
+            _rb.AddForce(_direccionAleatoria * _fuerza, ForceMode.Impulse);
+            _rb.AddTorque(Random.insideUnitSphere * torqueImpacto, ForceMode.Impulse);
+        }
+    }
+
+    public GameObject ObtenerObjetoSostenido()
+    {
+        return objetoSostenido != null ? objetoSostenido.ObtenerGameObject() : null;
+    }
+
+    public Transform ObtenerPuntoMano()
+    {
+        return puntoMano;
+    }
+
+    /** Calcula los puntos base y superior de la capsula REAL de forma correcta */
     private void CalcularCapsula(out Vector3 puntoBase, out Vector3 puntoSuperior)
     {
+        /** USAR transform.position DIRECTAMENTE. CERO DIVISIONES POR 4. */
         puntoBase = transform.position
                     + transform.forward * desfaseFrontal
                     + transform.up * desfaseVertical;
@@ -76,8 +120,7 @@ public class InteractorJugador : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-        Vector3 _puntoBase = transform.position + (transform.forward * desfaseFrontal) + (transform.up * desfaseVertical);
-        Vector3 _puntoSuperior = _puntoBase + (Vector3.up * alturaCapsula);
+        CalcularCapsula(out Vector3 _puntoBase, out Vector3 _puntoSuperior);
 
         /** Dibujar volumen de la capsula */
         Gizmos.DrawWireSphere(_puntoBase, radioDeteccion);
