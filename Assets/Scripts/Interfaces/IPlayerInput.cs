@@ -7,4 +7,5 @@ public interface IPlayerInput
     Vector2 EntradaMirar { get; }
     bool SaltoPresionado { get; }
     bool InteraccionPresionada { get; }
+    bool SoltarMascaraPresionada { get; }
 }

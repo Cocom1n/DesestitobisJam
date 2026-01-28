@@ -20,7 +20,8 @@ public class InteractorJugador : MonoBehaviour, IAgarraObjetos
 
     private IPlayerInput entrada;
     private ICollectible objetoSostenido;
-    
+    private EffectController effectController;
+
     /** Implementacion de IAgarraObjetos */
     public bool TieneObjeto => objetoSostenido != null;
 
@@ -30,7 +31,8 @@ public class InteractorJugador : MonoBehaviour, IAgarraObjetos
     private void Awake()
     {
         entrada = GetComponent<IPlayerInput>();
-        
+        effectController = GetComponent<EffectController>();
+
         if (puntoMano == null)
         {
             puntoMano = transform;
@@ -46,9 +48,14 @@ public class InteractorJugador : MonoBehaviour, IAgarraObjetos
         {
             IntentarRecolectar();
         }
+        /** Si tenemos algo y presionamos Q, lo soltamos y quitamos efectos */
+        else if (TieneObjeto && entrada.SoltarMascaraPresionada)
+        {
+            DesequiparMascara();
+        }
     }
 
-    /** Busca objetos recolectables usando una capsula con posicion ajustable */
+    /** Busca objetos recolectables usando una capsula ajustable */
     private void IntentarRecolectar()
     {
         CalcularCapsula(out Vector3 _puntoBase, out Vector3 _puntoSuperior);
@@ -63,19 +70,43 @@ public class InteractorJugador : MonoBehaviour, IAgarraObjetos
 
         for (int _i = 0; _i < _cantidad; _i++)
         {
-            if (_bufferColisionadores[_i].TryGetComponent(out ICollectible _recolectable))
+            if (_bufferColisionadores[_i].TryGetComponent(out MaskCollectable _mascara))
             {
-                objetoSostenido = _recolectable;
-                objetoSostenido.Recolectar(puntoMano);
-                return;
+                objetoSostenido = _mascara;
+                _mascara.RecolectarMask(puntoMano, effectController);
+                break; // Solo una mascara a la vez
             }
         }
+    }
+
+    /** Quita la mascara, revierte sus efectos y la suelta fisicamente */
+    private void DesequiparMascara()
+    {
+        if (objetoSostenido == null) return;
+
+        /** Revertir efectos temporales/reversibles */
+        if (effectController != null)
+        {
+            effectController.RemoveMaskEffects();
+        }
+
+        /** Soltar el objeto */
+        objetoSostenido.Soltar();
+        objetoSostenido = null;
+
+        Debug.Log("Mascara desequipada");
     }
 
     /** IAgarraObjetos: El Diablo llama a este metodo para quitar el objeto */
     public void PerderObjeto()
     {
         if (objetoSostenido == null) return;
+
+        /** Si el Diablo nos quita la mascara, tambien perdemos los efectos */
+        if (effectController != null)
+        {
+            effectController.RemoveMaskEffects();
+        }
 
         /** Guardar referencia temporal para aplicar fuerzas */
         GameObject _item = objetoSostenido.ObtenerGameObject();
@@ -85,7 +116,7 @@ public class InteractorJugador : MonoBehaviour, IAgarraObjetos
         objetoSostenido.Soltar();
         objetoSostenido = null;
 
-        /** Aplicar un golpe aleatorio al objeto, NO al jugador */
+        /** Aplicar un golpe aleatorio al objeto */
         if (_rb != null)
         {
             Vector3 _direccionAleatoria = (Vector3.up + Random.insideUnitSphere * 0.5f).normalized;
@@ -106,10 +137,9 @@ public class InteractorJugador : MonoBehaviour, IAgarraObjetos
         return puntoMano;
     }
 
-    /** Calcula los puntos base y superior de la capsula REAL de forma correcta */
+    /** Calcula los puntos base y superior de la capsula */
     private void CalcularCapsula(out Vector3 puntoBase, out Vector3 puntoSuperior)
     {
-        /** USAR transform.position DIRECTAMENTE. CERO DIVISIONES POR 4. */
         puntoBase = transform.position
                     + transform.forward * desfaseFrontal
                     + transform.up * desfaseVertical;
@@ -122,7 +152,6 @@ public class InteractorJugador : MonoBehaviour, IAgarraObjetos
         Gizmos.color = Color.yellow;
         CalcularCapsula(out Vector3 _puntoBase, out Vector3 _puntoSuperior);
 
-        /** Dibujar volumen de la capsula */
         Gizmos.DrawWireSphere(_puntoBase, radioDeteccion);
         Gizmos.DrawWireSphere(_puntoSuperior, radioDeteccion);
 

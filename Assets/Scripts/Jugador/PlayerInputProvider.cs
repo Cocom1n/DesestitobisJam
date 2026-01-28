@@ -15,6 +15,7 @@ public class PlayerInputProvider : MonoBehaviour, IPlayerInput
     public Vector2 EntradaMirar => accionMirar.ReadValue<Vector2>();
     public bool SaltoPresionado => accionSalto.WasPressedThisFrame();
     public bool InteraccionPresionada => accionInteraccion.WasPressedThisFrame();
+    public bool SoltarMascaraPresionada => Keyboard.current != null && Keyboard.current.qKey.wasPressedThisFrame;
 
     private void Awake()
     {
