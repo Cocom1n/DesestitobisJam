@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class GestorHielos : MonoBehaviour
 {
-    [SerializeField] private SerElectrocutado jugadorLogica;
+    [SerializeField] private SerElectrocutado ScriptJugador;
 
     [SerializeField] private GameObject hieloPrefab;
     [SerializeField] private Transform puntoGeneracion;
@@ -14,19 +14,19 @@ public class GestorHielos : MonoBehaviour
 
     private void OnEnable()
     {
-        if (jugadorLogica != null)
+        if (ScriptJugador != null)
         {
-            jugadorLogica.AlCambiarVida += ActualizarVaso;
-            jugadorLogica.AlMorir += EfectoMuerteVisual;
+            ScriptJugador.AlCambiarVida += ActualizarVaso;
+            ScriptJugador.AlMorir += EfectoMuerteVisual;
         }
     }
 
     private void OnDisable()
     {
-        if (jugadorLogica != null)
+        if (ScriptJugador != null)
         {
-            jugadorLogica.AlCambiarVida -= ActualizarVaso;
-            jugadorLogica.AlMorir -= EfectoMuerteVisual;
+            ScriptJugador.AlCambiarVida -= ActualizarVaso;
+            ScriptJugador.AlMorir -= EfectoMuerteVisual;
         }
     }
 
