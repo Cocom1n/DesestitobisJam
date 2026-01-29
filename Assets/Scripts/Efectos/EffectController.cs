@@ -11,7 +11,7 @@ public class EffectController : MonoBehaviour
     private readonly List<ActiveEffectInfo> revertibleEffects = new();
 
     /** Registro de efectos permanentes ya aplicados para no repetir */
-    private readonly HashSet<EffectBase> appliedPermanentEffects = new();
+    private readonly HashSet<MaskCollectable> appliedPermanentEffects = new();
 
     private MaskCollectable currentMaskItem;
     private Coroutine maskLifetimeCoroutine;
@@ -42,10 +42,10 @@ public class EffectController : MonoBehaviour
             if (data.isPermanent)
             {
                 // Solo aplicar si no se ha aplicado este efecto antes jamas
-                if (!appliedPermanentEffects.Contains(data.effect))
+                if (!appliedPermanentEffects.Contains(item))
                 {
                     data.effect.Apply(target, data.value);
-                    appliedPermanentEffects.Add(data.effect);
+                    appliedPermanentEffects.Add(item);
                     Debug.Log($"Efecto permanente {data.effect.name} aplicado");
                 }
             }

@@ -4,9 +4,10 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody), typeof(Collider))]
 public class CollectibleItem : MonoBehaviour, ICollectible
 {
-    private Rigidbody rb;
-    private Collider col;
+    protected Rigidbody rb;
+    protected Collider col;
     private bool estaRecolectado;
+
 
     private void Awake()
     {
@@ -19,15 +20,15 @@ public class CollectibleItem : MonoBehaviour, ICollectible
     }
 
     /** Desactiva la fisica y emparenta el objeto al punto de anclaje */
-    public void Recolectar(Transform puntoAnclaje)
+    public virtual void Recolectar(Transform punto)
     {
         if (estaRecolectado) return;
 
         estaRecolectado = true;
-        if (rb != null) rb.isKinematic = true;
-        if (col != null) col.enabled = false;
+        rb.isKinematic = true;
+        col.enabled = false;
 
-        transform.SetParent(puntoAnclaje);
+        transform.SetParent(punto);
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
 

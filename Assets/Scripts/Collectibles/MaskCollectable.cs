@@ -10,10 +10,20 @@ public class MaskCollectable : CollectibleItem
     /** Indica si la mascara ya expiro para evitar re-recoleccion */
     private bool expiro;
 
+
+    // Nueva propiedad pública de solo lectura
+    public bool Expiro => expiro;
+
+    public MaskData MaskData => maskData;
+
     /** Referencia para el efecto de titileo (Solo para temporales) */
     private Renderer targetRenderer;
     private MaterialPropertyBlock propBlock;
     private static readonly int FlickerIntensityID = Shader.PropertyToID("_FlickerIntensity");
+
+    /** Se llama cuando la mascara deja de estar equipada */
+    public System.Action<MaskCollectable> OnMaskReleased;
+
 
     private void Start()
     {
@@ -26,12 +36,10 @@ public class MaskCollectable : CollectibleItem
     }
 
     /** Aplica los efectos de la mascara al recolectar */
-    public void RecolectarMask(Transform puntoMano, EffectController effects)
+    public void RecolectarMask(EffectController effects, Transform puntoCabeza)
     {
         if (maskData == null || effects == null || expiro) return;
-
-        base.Recolectar(puntoMano);
-
+        base.Recolectar(puntoCabeza);
         effects.ApplyMask(maskData, this);
 
         // Resetear intensidad si es temporal
@@ -53,6 +61,7 @@ public class MaskCollectable : CollectibleItem
 
         // Desvincular del jugador
         base.Soltar();
+        OnMaskReleased?.Invoke(this);
 
         Debug.Log($"Mascara {maskData.maskName} expiro. Iniciando titileo");
         

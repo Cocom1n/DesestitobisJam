@@ -14,8 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maskName: oro
   icon: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  lifetime: 2
+  lifetime: 0
   effects:
   - effect: {fileID: 11400000, guid: 13d2ca3b78e9a8c4d8c6b6a28606c1d8, type: 2}
     value: 5
     isPermanent: 0
+  - effect: {fileID: 0}
+    value: -1
+    isPermanent: 1

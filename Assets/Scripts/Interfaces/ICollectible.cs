@@ -4,9 +4,9 @@ using UnityEngine;
 public interface ICollectible
 {
     /** Se llama cuando el objeto es agarrado */
-    void Recolectar(Transform puntoAnclaje);
+    void Recolectar(Transform punto);
     
-    /** Se llama cuando el objeto es soltado o robado para resetear su estado */
+    /** Se llama cuando el objeto es soltado */
     void Soltar();
     
     /** Devuelve la referencia al GameObject del item */

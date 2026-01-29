@@ -17,13 +17,18 @@ public class InteractorJugador : MonoBehaviour, IAgarraObjetos
 
     [Header("Referencias")]
     [SerializeField] private Transform puntoMano;
+    [SerializeField] private Transform puntoCabeza;
+
 
     private IPlayerInput entrada;
-    private ICollectible objetoSostenido;
+    private ICollectible objetoMano;
+    private MaskCollectable mascaraEquipada;
+
     private EffectController effectController;
 
-    /** Implementacion de IAgarraObjetos */
-    public bool TieneObjeto => objetoSostenido != null;
+    // Enlazado con el diablo 1
+    public bool TieneObjeto => objetoMano != null || mascaraEquipada != null;
+
 
     /** Buffer para evitar Garbage Collection (GC) */
     private readonly Collider[] _bufferColisionadores = new Collider[5];
@@ -33,10 +38,8 @@ public class InteractorJugador : MonoBehaviour, IAgarraObjetos
         entrada = GetComponent<IPlayerInput>();
         effectController = GetComponent<EffectController>();
 
-        if (puntoMano == null)
-        {
-            puntoMano = transform;
-        }
+        if (puntoMano == null) puntoMano = transform;
+        if (puntoCabeza == null) puntoCabeza = transform;
     }
 
     private void Update()
@@ -44,12 +47,12 @@ public class InteractorJugador : MonoBehaviour, IAgarraObjetos
         if (entrada == null) return;
 
         /** Solo intentamos recolectar si no tenemos nada en la mano */
-        if (!TieneObjeto && entrada.InteraccionPresionada)
+        if (entrada.InteraccionPresionada)
         {
             IntentarRecolectar();
         }
         /** Si tenemos algo y presionamos Q, lo soltamos y quitamos efectos */
-        else if (TieneObjeto && entrada.SoltarMascaraPresionada)
+        else if (entrada.SoltarMascaraPresionada)
         {
             DesequiparMascara();
         }
@@ -68,81 +71,109 @@ public class InteractorJugador : MonoBehaviour, IAgarraObjetos
             capaRecolectables
         );
 
-        for (int _i = 0; _i < _cantidad; _i++)
+        for (int i = 0; i < _cantidad; i++)
         {
-            if (_bufferColisionadores[_i].TryGetComponent(out MaskCollectable _mascara))
+            if (_bufferColisionadores[i].TryGetComponent(out MaskCollectable _mascara))
             {
-                objetoSostenido = _mascara;
-                _mascara.RecolectarMask(puntoMano, effectController);
-                break; // Solo una mascara a la vez
+                // Solo agarrar si no hay nada en la cabeza
+                if (mascaraEquipada == null && !_mascara.Expiro)
+                {
+                    mascaraEquipada = _mascara;
+
+                    _mascara.transform.SetParent(puntoCabeza);
+                    _mascara.transform.localPosition = Vector3.zero;
+
+                    _mascara.RecolectarMask(effectController, puntoCabeza);
+                    _mascara.OnMaskReleased += OnMascaraLiberada;
+                }
+                return; // un obj por actializacion
+
+            }
+            if (_bufferColisionadores[i].TryGetComponent(out ICollectible _item))
+            {
+                if (objetoMano == null)
+                {
+                    objetoMano = _item;
+                    _item.Recolectar(puntoMano);
+                }
+                return;
             }
         }
     }
+    private void OnMascaraLiberada(MaskCollectable mask)
+    {
+        if (mascaraEquipada == mask)
+        {
+            mascaraEquipada = null;
+            effectController?.RemoveMaskEffects();
+        }
+        mask.OnMaskReleased -= OnMascaraLiberada;
+    }
+
 
     /** Quita la mascara, revierte sus efectos y la suelta fisicamente */
     private void DesequiparMascara()
     {
-        if (objetoSostenido == null) return;
+        if (mascaraEquipada == null) return;
 
         /** Revertir efectos temporales/reversibles */
-        if (effectController != null)
-        {
-            effectController.RemoveMaskEffects();
-        }
+        effectController.RemoveMaskEffects();
 
-        /** Soltar el objeto */
-        objetoSostenido.Soltar();
-        objetoSostenido = null;
+        if (mascaraEquipada.MaskData.lifetime > 0)
+            mascaraEquipada.Expirar();
+        else
+            mascaraEquipada.Soltar();
+
+        mascaraEquipada = null;
 
         Debug.Log("Mascara desequipada");
+    }
+
+    /** Decide donde va el item */
+    private Transform ObtenerPuntoEquipamiento(CollectibleItem item)
+    {
+        return item is MaskCollectable ? puntoCabeza : puntoMano;
     }
 
     /** IAgarraObjetos: El Diablo llama a este metodo para quitar el objeto */
     public void PerderObjeto()
     {
-        if (objetoSostenido == null) return;
+        PerderHielo();
+        if (mascaraEquipada == null) return;
 
         /** Si el Diablo nos quita la mascara, tambien perdemos los efectos */
-        if (effectController != null)
-        {
-            effectController.RemoveMaskEffects();
-        }
+        effectController?.RemoveMaskEffects();
 
-        /** Guardar referencia temporal para aplicar fuerzas */
-        GameObject _item = objetoSostenido.ObtenerGameObject();
-        if (_item != null)
-        {
-            Rigidbody _rb = _item.GetComponent<Rigidbody>();
+        GameObject _go = mascaraEquipada.ObtenerGameObject();
+        if (_go == null) return;
 
-            /** Soltar mediante la interfaz del item */
-            objetoSostenido.Soltar();
-            objetoSostenido = null;
+        DesequiparMascara();
 
-            /** Aplicar un golpe aleatorio al objeto */
-            if (_rb != null)
-            {
-                Vector3 _direccionAleatoria = (Vector3.up + Random.insideUnitSphere * 0.5f).normalized;
-                float _fuerza = Random.Range(fuerzaImpactoMin, fuerzaImpactoMax);
-                
-                _rb.AddForce(_direccionAleatoria * _fuerza, ForceMode.Impulse);
-                _rb.AddTorque(Random.insideUnitSphere * torqueImpacto, ForceMode.Impulse);
-            }
-        }
-        else
-        {
-            objetoSostenido = null;
-        }
+        if (!_go.TryGetComponent(out Rigidbody _rb)) return;
+
+        Vector3 _direccion = (Vector3.up + Random.insideUnitSphere * 0.5f).normalized;
+        float _fuerza = Random.Range(fuerzaImpactoMin, fuerzaImpactoMax);
+
+        _rb.AddForce(_direccion * _fuerza, ForceMode.Impulse);
+        _rb.AddTorque(Random.insideUnitSphere * torqueImpacto, ForceMode.Impulse);
+
+        mascaraEquipada = null;
+        Debug.Log("mascara empujada con fuerza");
     }
 
-    public GameObject ObtenerObjetoSostenido()
+    public void PerderHielo()
     {
-        return objetoSostenido != null ? objetoSostenido.ObtenerGameObject() : null;
+        if (objetoMano != null)
+        {
+            Debug.Log("quitar hielo");
+
+        }
     }
 
-    public Transform ObtenerPuntoMano()
-    {
-        return puntoMano;
-    }
+
+    public Transform ObtenerPuntoMano() => puntoMano;
+    public Transform ObtenerPuntoCabeza() => puntoCabeza;
+
 
     /** Calcula los puntos base y superior de la capsula */
     private void CalcularCapsula(out Vector3 puntoBase, out Vector3 puntoSuperior)
@@ -152,6 +183,16 @@ public class InteractorJugador : MonoBehaviour, IAgarraObjetos
                     + transform.up * desfaseVertical;
 
         puntoSuperior = puntoBase + Vector3.up * alturaCapsula;
+    }
+    public GameObject ObtenerObjetoSostenido()
+    {
+        if (mascaraEquipada != null)
+            return mascaraEquipada.ObtenerGameObject();
+
+        if (objetoMano != null)
+            return objetoMano.ObtenerGameObject();
+
+        return null;
     }
 
     private void OnDrawGizmosSelected()
