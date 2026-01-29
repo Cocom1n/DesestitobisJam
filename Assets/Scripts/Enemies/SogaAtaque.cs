@@ -6,7 +6,7 @@ public class SogaAtaque : MonoBehaviour
 {
     [Header("Configuracion de Soga Instantanea")]
     [SerializeField] private GameObject prefabSoga3D;
-    [SerializeField] private float velocidadLanzamiento = 100f; /** Muy alta para efecto instantaneo */
+    [SerializeField] private float velocidadLanzamiento = 100f;
     [SerializeField] private float tiempoVidaSoga = 0.3f;
 
     private GameObject instanciaSoga;
@@ -59,13 +59,6 @@ public class SogaAtaque : MonoBehaviour
 
             yield return null;
         }
-
-        /** Impacto instantaneo */
-        if (poseedor != null && poseedor.TieneObjeto)
-        {
-            poseedor.PerderObjeto();
-        }
-
         yield return new WaitForSeconds(tiempoVidaSoga);
         
         instanciaSoga.SetActive(false);

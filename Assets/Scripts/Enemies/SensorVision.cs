@@ -1,6 +1,6 @@
 using UnityEngine;
 
-/** Sensor para objetos mediante un cono de vision */
+/** Sensor para detectar objetivos mediante un cono de vision ajustable */
 public class SensorVision : MonoBehaviour
 {
     [Header("Configuracion de Vision")]
@@ -10,9 +10,10 @@ public class SensorVision : MonoBehaviour
     [SerializeField] private LayerMask obstaculos;
     [SerializeField] private LayerMask objetivos;
 
+    /** Buffer para evitar Garbage Collection */
     private readonly Collider[] buffer = new Collider[16];
 
-    // Cacheo xd
+    /** Cache de calculos */
     private float rangoSqr;
     private float cosHalfH;
     private float cosHalfV;
@@ -28,11 +29,12 @@ public class SensorVision : MonoBehaviour
         cosHalfV = Mathf.Cos(anguloVertical * 0.5f * Mathf.Deg2Rad);
     }
 
-    /** Busca un objetivo IAgarraObjetos */
+    /** Busca un objetivo que implemente IAgarraObjetos y tenga un objeto */
     public IAgarraObjetos DetectarObjetivo(out Transform puntoMano)
     {
         puntoMano = null;
 
+        /** Deteccion inicial por area */
         int cantidad = Physics.OverlapSphereNonAlloc(
             tr.position,
             rango,
@@ -47,76 +49,42 @@ public class SensorVision : MonoBehaviour
 
         for (int i = 0; i < cantidad; i++)
         {
+            /** Intentar obtener el componente de agarre */
             if (!buffer[i].TryGetComponent(out IAgarraObjetos objetivo))
                 continue;
 
-            if (!objetivo.TieneObjeto)
+            Transform mano = objetivo.ObtenerPuntoMano();
+            if (mano == null)
                 continue;
 
-            Transform mano = objetivo.ObtenerPuntoMano();
             Vector3 toTarget = mano.position - origen;
 
-            // Distancia
+            /** Comprobacion de distancia al cuadrado (mas eficiente) */
             if (toTarget.sqrMagnitude > rangoSqr)
                 continue;
 
             Vector3 dir = toTarget.normalized;
 
-            // Horizontal
+            /** Comprobacion de Cono Horizontal */
             Vector3 dirPlano = Vector3.ProjectOnPlane(dir, up).normalized;
             if (Vector3.Dot(dirPlano, forward) < cosHalfH)
                 continue;
 
-            // Vertical
+            /** Comprobacion de Cono Vertical */
             Vector3 dirVertical = Vector3.ProjectOnPlane(dir, right).normalized;
             if (Vector3.Dot(dirVertical, forward) < cosHalfV)
                 continue;
 
+            /** Raycast final para asegurar vision limpia */
             if (Physics.Raycast(origen, dir, toTarget.magnitude, obstaculos))
                 continue;
 
             puntoMano = mano;
+
             return objetivo;
         }
 
         return null;
-    }
-
-    /** Comprueba si una posicion esta dentro de la piramide de vision ajustable */
-    private bool EstaEnVision(Vector3 posicionObjetivo)
-    {
-        Vector3 _direccionLocal = transform.InverseTransformPoint(posicionObjetivo);
-        
-        if (_direccionLocal.z <= 0) return false;
-
-        float _anguloH = Mathf.Atan2(_direccionLocal.x, _direccionLocal.z) * Mathf.Rad2Deg;
-        float _anguloV = Mathf.Atan2(_direccionLocal.y, _direccionLocal.z) * Mathf.Rad2Deg;
-
-        return Mathf.Abs(_anguloH) <= anguloHorizontal / 2f && 
-               Mathf.Abs(_anguloV) <= anguloVertical / 2f;
-    }
-
-    /** Verifica si hay algo bloqueando la vista especifica hacia la mano */
-    private bool TieneVisionLimpia(Vector3 posicionMano)
-    {
-        Vector3 _origen = transform.position;
-        Vector3 _direccion = posicionMano - _origen;
-        float _distancia = _direccion.magnitude;
-
-        /** 
-         * Rayo hacia la mano. Si golpeamos algo antes de llegar (otra persona)
-         * la vision no es limpia. TMb hay un margen para evitar errores de precision
-         */
-        if (Physics.Raycast(_origen, _direccion.normalized, out RaycastHit _hit, _distancia + 0.1f, obstaculos))
-        {
-            /** Si el rayo choco con algo antes de llegar a la mano (distancia menor), esta bloqueado */
-            if (_hit.distance < _distancia - 0.1f)
-            {
-                return false;
-            }
-        }
-        
-        return true;
     }
 
     private void OnDrawGizmosSelected()

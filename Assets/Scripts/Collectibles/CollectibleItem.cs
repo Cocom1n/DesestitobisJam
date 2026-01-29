@@ -1,55 +1,67 @@
 using UnityEngine;
 
-/** Implementacion base de un objeto que el jugador puede recoger y soltar */
+/** Implementacion base que busca el socket 'Mano' por defecto */
 [RequireComponent(typeof(Rigidbody), typeof(Collider))]
-public class CollectibleItem : MonoBehaviour, ICollectible
+public class CollectibleItem : MonoBehaviour, IRecolectable
 {
-    private Rigidbody cuerpoRigido;
-    private Collider colisionador;
-    private bool estaRecolectado;
+    [Header("Configuracion de Anclaje")]
+    [SerializeField] protected string nombreSocketObjetivo = "Mano";
 
-    private void Awake()
+    protected Rigidbody rb;
+    protected Collider col;
+    protected bool estaRecolectado;
+
+    protected virtual void Awake()
     {
-        cuerpoRigido = GetComponent<Rigidbody>();
-        colisionador = GetComponent<Collider>();
+        rb = GetComponent<Rigidbody>();
+        col = GetComponent<Collider>();
         
-        /** Aseguramos estado inicial fisico */
-        cuerpoRigido.isKinematic = false;
-        colisionador.enabled = true;
+        rb.isKinematic = false;
+        col.enabled = true;
     }
 
-    /** Desactiva la fisica y emparenta el objeto al punto de anclaje */
-    public void Recolectar(Transform puntoAnclaje)
+    /** Solicita al receptor el socket configurado */
+    public virtual bool SerRecogido(IReceptorInteraccion receptor)
     {
-        if (estaRecolectado) return;
+        if (estaRecolectado || receptor == null) return false;
 
+        Transform punto = receptor.ObtenerSocket(nombreSocketObjetivo);
+        
+        /** Si el receptor tiene el socket y lo permite ocupar, recolectamos */
+        if (punto != null && receptor.IntentarOcupar(nombreSocketObjetivo, this))
+        {
+            Recolectar(punto);
+            return true;
+        }
+        return false;
+    }
+
+    /** Anclaje fisico al transform obtenido */
+    public virtual void Recolectar(Transform punto)
+    {
         estaRecolectado = true;
-        cuerpoRigido.isKinematic = true;
-        colisionador.enabled = false;
+        if (rb != null) rb.isKinematic = true;
+        if (col != null) col.enabled = false;
 
-        transform.SetParent(puntoAnclaje);
+        transform.SetParent(punto);
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
 
-        Debug.Log($"Objeto {gameObject.name} recolectado");
+        Debug.Log($"Objeto {gameObject.name} recolectado en socket: {punto.name}");
     }
 
     /** Prepara el objeto para volver a ser recolectable despues de caer */
-    public void Soltar()
+    public virtual void Soltar()
     {
         if (!estaRecolectado) return;
 
         estaRecolectado = false;
         transform.SetParent(null);
         
-        cuerpoRigido.isKinematic = false;
-        colisionador.enabled = true;
-        
+        rb.isKinematic = false;
+        col.enabled = true;
         Debug.Log($"Objeto {gameObject.name} soltado");
     }
 
-    public GameObject ObtenerGameObject()
-    {
-        return gameObject;
-    }
+    public GameObject ObtenerGameObject() => gameObject;
 }
