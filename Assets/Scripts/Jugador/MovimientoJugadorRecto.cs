@@ -27,9 +27,4 @@ public class MovimientoJugadorRecto : MonoBehaviour
         
         return direccion.normalized * velocidadActual;
     }
-{
-    Vector3 direccion = new Vector3(input.x, 0, input.y);
-    
-    return direccion.normalized * velocidad;
-}
 }
