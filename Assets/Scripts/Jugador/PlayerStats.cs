@@ -9,17 +9,17 @@ public class PlayerStats : MonoBehaviour, IEffectTarget
     [SerializeField] private float damage = 1;
 
     /** Referencias visuales para efectos como el entintado */
-    private Renderer[] renderers;
+    private Renderer[] targetRenderers;
     private Color originalColor = Color.white;
 
     private void Awake()
     {
         // Buscar todos los renderers para aplicar el color correctamente
-        renderers = GetComponentsInChildren<Renderer>();
-        if (renderers.Length > 0)
+        targetRenderers = GetComponentsInChildren<Renderer>();
+        if (targetRenderers != null && targetRenderers.Length > 0)
         {
             // Se asume que el primer material tiene el color representativo
-            originalColor = renderers[0].material.color;
+            originalColor = targetRenderers[0].material.color;
         }
     }
 
@@ -56,9 +56,9 @@ public class PlayerStats : MonoBehaviour, IEffectTarget
     /** Cambia el color de todos los renderers del jugador */
     public void SetColor(Color color)
     {
-        if (renderers == null) return;
+        if (targetRenderers == null) return;
 
-        foreach (var r in renderers)
+        foreach (var r in targetRenderers)
         {
             if (r != null && r.material != null)
             {

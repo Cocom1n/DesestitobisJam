@@ -110,20 +110,27 @@ public class InteractorJugador : MonoBehaviour, IAgarraObjetos
 
         /** Guardar referencia temporal para aplicar fuerzas */
         GameObject _item = objetoSostenido.ObtenerGameObject();
-        Rigidbody _rb = _item.GetComponent<Rigidbody>();
-
-        /** Soltar mediante la interfaz del item */
-        objetoSostenido.Soltar();
-        objetoSostenido = null;
-
-        /** Aplicar un golpe aleatorio al objeto */
-        if (_rb != null)
+        if (_item != null)
         {
-            Vector3 _direccionAleatoria = (Vector3.up + Random.insideUnitSphere * 0.5f).normalized;
-            float _fuerza = Random.Range(fuerzaImpactoMin, fuerzaImpactoMax);
-            
-            _rb.AddForce(_direccionAleatoria * _fuerza, ForceMode.Impulse);
-            _rb.AddTorque(Random.insideUnitSphere * torqueImpacto, ForceMode.Impulse);
+            Rigidbody _rb = _item.GetComponent<Rigidbody>();
+
+            /** Soltar mediante la interfaz del item */
+            objetoSostenido.Soltar();
+            objetoSostenido = null;
+
+            /** Aplicar un golpe aleatorio al objeto */
+            if (_rb != null)
+            {
+                Vector3 _direccionAleatoria = (Vector3.up + Random.insideUnitSphere * 0.5f).normalized;
+                float _fuerza = Random.Range(fuerzaImpactoMin, fuerzaImpactoMax);
+                
+                _rb.AddForce(_direccionAleatoria * _fuerza, ForceMode.Impulse);
+                _rb.AddTorque(Random.insideUnitSphere * torqueImpacto, ForceMode.Impulse);
+            }
+        }
+        else
+        {
+            objetoSostenido = null;
         }
     }
 

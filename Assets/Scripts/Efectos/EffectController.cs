@@ -2,19 +2,21 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-/** Controla la aplicacion de efectos en un objetivo */
+/** Controla la aplicacion de efectos y gestiona el tiempo de vida de las mascaras */
 public class EffectController : MonoBehaviour
 {
-    /** Objetivo sobre el que se aplican los efectos */
     private IEffectTarget target;
 
-    /** Lista de efectos temporales activos para evitar duplicados o gestionar limpieza */
-    private readonly List<ActiveEffectInfo> activeTimedEffects = new();
+    /** Efectos que deben revertirse al soltar la mascara (no permanentes) */
+    private readonly List<ActiveEffectInfo> revertibleEffects = new();
 
-    /** Efectos permanentes que deben revertirse al soltar la mascara */
-    private readonly List<ActiveEffectInfo> reversibleEffects = new();
+    /** Registro de efectos permanentes ya aplicados para no repetir */
+    private readonly HashSet<EffectBase> appliedPermanentEffects = new();
 
-    /** Eventos para el HUD */
+    private MaskCollectable currentMaskItem;
+    private Coroutine maskLifetimeCoroutine;
+
+    /** Eventos HUD */
     public System.Action<MaskData> OnMaskEquipped;
     public System.Action OnMaskUnequipped;
 
@@ -23,70 +25,83 @@ public class EffectController : MonoBehaviour
         target = GetComponent<IEffectTarget>();
     }
 
-    /** Aplica todos los efectos de una mascara */
-    public void ApplyMask(MaskData mask)
+    /** Aplica efectos de mascara y gestiona su lifetime */
+    public void ApplyMask(MaskData mask, MaskCollectable item)
     {
-        if (mask == null) return;
+        if (mask == null || item == null) return;
 
-        foreach (var effectData in mask.effects)
+        // Limpiar efectos previos si existian (no los permanentes ya registrados)
+        RemoveMaskEffects();
+
+        currentMaskItem = item;
+
+        foreach (var data in mask.effects)
         {
-            ApplyEffect(effectData);
+            if (data.effect == null) continue;
+
+            if (data.isPermanent)
+            {
+                // Solo aplicar si no se ha aplicado este efecto antes jamas
+                if (!appliedPermanentEffects.Contains(data.effect))
+                {
+                    data.effect.Apply(target, data.value);
+                    appliedPermanentEffects.Add(data.effect);
+                    Debug.Log($"Efecto permanente {data.effect.name} aplicado");
+                }
+            }
+            else
+            {
+                // Efecto temporal o ligado a la mascara
+                data.effect.Apply(target, data.value);
+                revertibleEffects.Add(new ActiveEffectInfo(data.effect, data.value));
+            }
+        }
+
+        if (mask.lifetime > 0)
+        {
+            maskLifetimeCoroutine = StartCoroutine(RunMaskLifetime(mask.lifetime));
         }
 
         OnMaskEquipped?.Invoke(mask);
     }
 
-    /** Remueve los efectos reversibles de la mascara actual */
+    /** Revierte efectos no permanentes y detiene timers */
     public void RemoveMaskEffects()
     {
-        foreach (var info in reversibleEffects)
+        if (maskLifetimeCoroutine != null)
+        {
+            StopCoroutine(maskLifetimeCoroutine);
+            maskLifetimeCoroutine = null;
+        }
+
+        foreach (var info in revertibleEffects)
         {
             info.effect.Remove(target, info.value);
         }
-        reversibleEffects.Clear();
-        
+        revertibleEffects.Clear();
+        currentMaskItem = null;
+
         OnMaskUnequipped?.Invoke();
     }
 
-    /** Gestiona la aplicacion de un unico efecto basado en su configuracion */
-    private void ApplyEffect(MaskEffectData data)
-    {
-        if (data.effect == null) return;
-
-        data.effect.Apply(target, data.value);
-
-        ActiveEffectInfo info = new ActiveEffectInfo(data.effect, data.value);
-
-        // Si es temporal (>0)
-        if (data.duration > 0)
-        {
-            StartCoroutine(RunTimedEffect(info, data.duration));
-        }
-        // Si es permanente mientras se tenga la mascara (0) y es reversible
-        else if (data.duration == 0 && data.reversibleOnDrop)
-        {
-            reversibleEffects.Add(info);
-        }
-        // Si es -1 (Instantaneo y permanente) no se agrega a ninguna lista de limpieza
-    }
-
-    /** Corrutina para efectos con tiempo limitado */
-    private IEnumerator RunTimedEffect(ActiveEffectInfo info, float duration)
+    /** Corrutina para fin de vida de mascara temporal */
+    private IEnumerator RunMaskLifetime(float duration)
     {
         yield return new WaitForSeconds(duration);
-        info.effect.Remove(target, info.value);
+
+        if (currentMaskItem != null)
+        {
+            currentMaskItem.Expirar();
+        }
+
+        // Al expirar una temporal, se quitan sus efectos reversibles
+        RemoveMaskEffects();
     }
 
-    /** Clase auxiliar para trackear efectos aplicados */
     private class ActiveEffectInfo
     {
         public EffectBase effect;
         public float value;
-
-        public ActiveEffectInfo(EffectBase e, float v)
-        {
-            effect = e;
-            value = v;
-        }
+        public ActiveEffectInfo(EffectBase e, float v) { effect = e; value = v; }
     }
 }

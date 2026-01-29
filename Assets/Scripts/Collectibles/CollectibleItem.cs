@@ -4,18 +4,18 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody), typeof(Collider))]
 public class CollectibleItem : MonoBehaviour, ICollectible
 {
-    private Rigidbody cuerpoRigido;
-    private Collider colisionador;
+    private Rigidbody rb;
+    private Collider col;
     private bool estaRecolectado;
 
     private void Awake()
     {
-        cuerpoRigido = GetComponent<Rigidbody>();
-        colisionador = GetComponent<Collider>();
+        rb = GetComponent<Rigidbody>();
+        col = GetComponent<Collider>();
         
         /** Aseguramos estado inicial fisico */
-        cuerpoRigido.isKinematic = false;
-        colisionador.enabled = true;
+        if (rb != null) rb.isKinematic = false;
+        if (col != null) col.enabled = true;
     }
 
     /** Desactiva la fisica y emparenta el objeto al punto de anclaje */
@@ -24,8 +24,8 @@ public class CollectibleItem : MonoBehaviour, ICollectible
         if (estaRecolectado) return;
 
         estaRecolectado = true;
-        cuerpoRigido.isKinematic = true;
-        colisionador.enabled = false;
+        if (rb != null) rb.isKinematic = true;
+        if (col != null) col.enabled = false;
 
         transform.SetParent(puntoAnclaje);
         transform.localPosition = Vector3.zero;
@@ -42,8 +42,8 @@ public class CollectibleItem : MonoBehaviour, ICollectible
         estaRecolectado = false;
         transform.SetParent(null);
         
-        cuerpoRigido.isKinematic = false;
-        colisionador.enabled = true;
+        if (rb != null) rb.isKinematic = false;
+        if (col != null) col.enabled = true;
         
         Debug.Log($"Objeto {gameObject.name} soltado");
     }

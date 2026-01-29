@@ -5,9 +5,7 @@
  */
 public abstract class TimedEffectBase : EffectBase
 {
-    /** Duracion del efecto. Se mantiene la firma por compatibilidad pero se remueve el estado interno */
-    public abstract override void Apply(IEffectTarget target, float value);
-    public abstract override void Remove(IEffectTarget target, float value);
+    // Hereda Apply y Remove de EffectBase sin necesidad de abstract override redundante.
 }
 
 /** Aumenta velocidad */

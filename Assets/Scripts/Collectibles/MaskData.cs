@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-/** Datos de la mascara: lista de efectos que aplica */
+/** Datos de la mascara: lista de efectos que aplica y su tiempo de vida */
 [CreateAssetMenu(fileName = "NuevaMascara", menuName = "Colectables/Mascara")]
 public class MaskData : ScriptableObject
 {
@@ -10,6 +10,9 @@ public class MaskData : ScriptableObject
 
     /** Icono para el HUD */
     public Sprite icon;
+
+    /** Tiempo de vida total en segundos. 0 = Permanente (mientras se tenga) */
+    public float lifetime;
 
     /** Lista de efectos parametrizados */
     public List<MaskEffectData> effects;
@@ -25,13 +28,6 @@ public class MaskEffectData
     /** Valor del efecto */
     public float value;
 
-    /** Duracion del efecto en segundos. 
-     *  0 = Permanente (mientras se tenga la mascara)
-     *  -1 = Instantaneo y Permanente (no se quita jamas)
-     *  >0 = Temporal (se quita tras X segundos)
-     */
-    public float duration;
-
-    /** Indica si el efecto debe revertirse al soltar la mascara (solo para duration >= 0) */
-    public bool reversibleOnDrop = true;
+    /** Si es true, el efecto no se quita al soltar y solo se aplica una vez jamas */
+    public bool isPermanent;
 }
