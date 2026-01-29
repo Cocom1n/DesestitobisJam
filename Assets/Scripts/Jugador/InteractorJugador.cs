@@ -1,214 +1,180 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
-/** Maneja la interaccion y recoleccion de objetos usando un volumen de capsula ajustable */
-public class InteractorJugador : MonoBehaviour, IAgarraObjetos
+/** Gestiona la deteccion e interaccion mediante una lista de sockets */
+public class InteractorJugador : MonoBehaviour, IAgarraObjetos, IReceptorInteraccion
 {
-    [Header("Configuracion de Capsula")]
-    [SerializeField] private float radioDeteccion = 0.32f;
+    [System.Serializable]
+    public class SocketInfo
+    {
+        public string nombre;
+        public Transform transform;
+        public IRecolectable ocupante;
+    }
+
+    [Header("Configuracion de Deteccion")]
+    [SerializeField] private float radioDeteccion = 0.5f;
     [SerializeField] private float alturaCapsula = 1.4f;
     [SerializeField] private float desfaseFrontal = 0.7f;
-    [SerializeField] private float desfaseVertical = -0.72f;
+    [SerializeField] private float desfaseVertical = -0.7f;
     [SerializeField] private LayerMask capaRecolectables;
+
+    [Header("Coleccion de Sockets")]
+    [SerializeField] private List<SocketInfo> sockets = new List<SocketInfo>();
 
     [Header("Configuracion de Desprendimiento")]
     [SerializeField] private float fuerzaImpactoMin = 2f;
     [SerializeField] private float fuerzaImpactoMax = 4f;
     [SerializeField] private float torqueImpacto = 10f;
 
-    [Header("Referencias")]
-    [SerializeField] private Transform puntoMano;
-    [SerializeField] private Transform puntoCabeza;
-
-
-    private IPlayerInput entrada;
-    private ICollectible objetoMano;
-    private MaskCollectable mascaraEquipada;
-
     private EffectController effectController;
 
-    // Enlazado con el diablo 1
-    public bool TieneObjeto => objetoMano != null || mascaraEquipada != null;
-
-
-    /** Buffer para evitar Garbage Collection (GC) */
     private readonly Collider[] _bufferColisionadores = new Collider[5];
+    private readonly HashSet<GameObject> _procesados = new HashSet<GameObject>();
+
+    /** IAgarraObjetos: Indica si alguno de los sockets esta ocupado */
+    public bool TieneObjeto
+    {
+        get
+        {
+            foreach (var s in sockets) if (s.ocupante != null) return true;
+            return false;
+        }
+    }
 
     private void Awake()
     {
-        entrada = GetComponent<IPlayerInput>();
         effectController = GetComponent<EffectController>();
-
-        if (puntoMano == null) puntoMano = transform;
-        if (puntoCabeza == null) puntoCabeza = transform;
     }
 
-    private void Update()
+    public void IntentarRecolectar()
     {
-        if (entrada == null) return;
+        _procesados.Clear();
+        CalcularCapsula(out Vector3 b, out Vector3 s);
+        int cant = Physics.OverlapCapsuleNonAlloc(b, s, radioDeteccion, _bufferColisionadores, capaRecolectables);
 
-        /** Solo intentamos recolectar si no tenemos nada en la mano */
-        if (entrada.InteraccionPresionada)
+        for (int i = 0; i < cant; i++)
         {
-            IntentarRecolectar();
-        }
-        /** Si tenemos algo y presionamos Q, lo soltamos y quitamos efectos */
-        else if (entrada.SoltarMascaraPresionada)
-        {
-            DesequiparMascara();
-        }
-    }
+            GameObject go = _bufferColisionadores[i].gameObject;
+            if (_procesados.Contains(go)) continue;
+            _procesados.Add(go);
 
-    /** Busca objetos recolectables usando una capsula ajustable */
-    private void IntentarRecolectar()
-    {
-        CalcularCapsula(out Vector3 _puntoBase, out Vector3 _puntoSuperior);
-
-        int _cantidad = Physics.OverlapCapsuleNonAlloc(
-            _puntoBase,
-            _puntoSuperior,
-            radioDeteccion,
-            _bufferColisionadores,
-            capaRecolectables
-        );
-
-        for (int i = 0; i < _cantidad; i++)
-        {
-            if (_bufferColisionadores[i].TryGetComponent(out MaskCollectable _mascara))
+            if (go.TryGetComponent(out IRecolectable item))
             {
-                // Solo agarrar si no hay nada en la cabeza
-                if (mascaraEquipada == null && !_mascara.Expiro)
-                {
-                    mascaraEquipada = _mascara;
-
-                    _mascara.transform.SetParent(puntoCabeza);
-                    _mascara.transform.localPosition = Vector3.zero;
-
-                    _mascara.RecolectarMask(effectController, puntoCabeza);
-                    _mascara.OnMaskReleased += OnMascaraLiberada;
-                }
-                return; // un obj por actializacion
-
+                /** El objeto solicita su socket preferido */
+                item.SerRecogido(this);
             }
-            if (_bufferColisionadores[i].TryGetComponent(out ICollectible _item))
+        }
+    }
+
+    /** Implementacion IReceptorInteraccion: Busca el transform del socket por nombre */
+    public Transform ObtenerSocket(string nombre)
+    {
+        foreach (var s in sockets)
+        {
+            if (s.nombre == nombre) return s.transform;
+        }
+        return null;
+    }
+
+    /** Implementacion IReceptorInteraccion: Gestiona la ocupacion del slot */
+    public bool IntentarOcupar(string nombre, IRecolectable item)
+    {
+        foreach (var s in sockets)
+        {
+            if (s.nombre == nombre && s.ocupante == null)
             {
-                if (objetoMano == null)
+                s.ocupante = item;
+                
+                /** Logica especifica para liberar el slot si es una mascara */
+                if (item is MaskCollectable mascara)
                 {
-                    objetoMano = _item;
-                    _item.Recolectar(puntoMano);
+                    mascara.OnMaskReleased += (m) => s.ocupante = null;
                 }
+                
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public EffectController ObtenerEfectos() => effectController;
+
+    public void SoltarPrioridad()
+    {
+        /** Buscamos soltar primero la mascara (Cabeza) para limpiar efectos */
+        foreach (var s in sockets)
+        {
+            if (s.nombre == "Cabeza" && s.ocupante != null)
+            {
+                effectController?.RemoveMaskEffects();
+                s.ocupante.Soltar();
+                s.ocupante = null;
+                return;
+            }
+        }
+
+        /** Si no hay mascara, soltamos el primer objeto encontrado */
+        foreach (var s in sockets)
+        {
+            if (s.nombre == "Mano" && s.ocupante != null)
+            {
+                //s.ocupante.Soltar();
+                //s.ocupante = null;
+                Debug.Log("No se puede soltar el OBJ de la mano");
                 return;
             }
         }
     }
-    private void OnMascaraLiberada(MaskCollectable mask)
-    {
-        if (mascaraEquipada == mask)
-        {
-            mascaraEquipada = null;
-            effectController?.RemoveMaskEffects();
-        }
-        mask.OnMaskReleased -= OnMascaraLiberada;
-    }
 
-
-    /** Quita la mascara, revierte sus efectos y la suelta fisicamente */
-    private void DesequiparMascara()
-    {
-        if (mascaraEquipada == null) return;
-
-        /** Revertir efectos temporales/reversibles */
-        effectController.RemoveMaskEffects();
-
-        if (mascaraEquipada.MaskData.lifetime > 0)
-            mascaraEquipada.Expirar();
-        else
-            mascaraEquipada.Soltar();
-
-        mascaraEquipada = null;
-
-        Debug.Log("Mascara desequipada");
-    }
-
-    /** Decide donde va el item */
-    private Transform ObtenerPuntoEquipamiento(CollectibleItem item)
-    {
-        return item is MaskCollectable ? puntoCabeza : puntoMano;
-    }
-
-    /** IAgarraObjetos: El Diablo llama a este metodo para quitar el objeto */
+    /** IAgarraObjetos: El Diablo nos roba un objeto (Cabeza > Otros) */
     public void PerderObjeto()
     {
-        PerderHielo();
-        if (mascaraEquipada == null) return;
-
-        /** Si el Diablo nos quita la mascara, tambien perdemos los efectos */
-        effectController?.RemoveMaskEffects();
-
-        GameObject _go = mascaraEquipada.ObtenerGameObject();
-        if (_go == null) return;
-
-        DesequiparMascara();
-
-        if (!_go.TryGetComponent(out Rigidbody _rb)) return;
-
-        Vector3 _direccion = (Vector3.up + Random.insideUnitSphere * 0.5f).normalized;
-        float _fuerza = Random.Range(fuerzaImpactoMin, fuerzaImpactoMax);
-
-        _rb.AddForce(_direccion * _fuerza, ForceMode.Impulse);
-        _rb.AddTorque(Random.insideUnitSphere * torqueImpacto, ForceMode.Impulse);
-
-        mascaraEquipada = null;
-        Debug.Log("mascara empujada con fuerza");
-    }
-
-    public void PerderHielo()
-    {
-        if (objetoMano != null)
+        SocketInfo victima = null;
+        foreach (var s in sockets)
         {
-            Debug.Log("quitar hielo");
+            if (s.ocupante != null)
+            {
+                if (s.nombre == "Cabeza") { victima = s; break; }
+                if (victima == null) victima = s;
+            }
+        }
 
+        if (victima == null) return;
+
+        if (victima.nombre == "Cabeza") effectController?.RemoveMaskEffects();
+
+        GameObject go = victima.ocupante.ObtenerGameObject();
+        victima.ocupante.Soltar();
+        victima.ocupante = null;
+
+        if (go != null && go.TryGetComponent(out Rigidbody rb))
+        {
+            Vector3 dir = (Vector3.up + Random.insideUnitSphere * 0.5f).normalized;
+            rb.AddForce(dir * Random.Range(fuerzaImpactoMin, fuerzaImpactoMax), ForceMode.Impulse);
+            rb.AddTorque(Random.insideUnitSphere * torqueImpacto, ForceMode.Impulse);
         }
     }
 
-
-    public Transform ObtenerPuntoMano() => puntoMano;
-    public Transform ObtenerPuntoCabeza() => puntoCabeza;
-
-
-    /** Calcula los puntos base y superior de la capsula */
-    private void CalcularCapsula(out Vector3 puntoBase, out Vector3 puntoSuperior)
-    {
-        puntoBase = transform.position
-                    + transform.forward * desfaseFrontal
-                    + transform.up * desfaseVertical;
-
-        puntoSuperior = puntoBase + Vector3.up * alturaCapsula;
-    }
     public GameObject ObtenerObjetoSostenido()
     {
-        if (mascaraEquipada != null)
-            return mascaraEquipada.ObtenerGameObject();
-
-        if (objetoMano != null)
-            return objetoMano.ObtenerGameObject();
-
+        foreach (var s in sockets) if (s.ocupante != null) return s.ocupante.ObtenerGameObject();
         return null;
+    }
+
+    public Transform ObtenerPuntoMano() => ObtenerSocket("Mano");
+
+    private void CalcularCapsula(out Vector3 b, out Vector3 s)
+    {
+        b = transform.position + transform.forward * desfaseFrontal + transform.up * desfaseVertical;
+        s = b + Vector3.up * alturaCapsula;
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-        CalcularCapsula(out Vector3 _puntoBase, out Vector3 _puntoSuperior);
-
-        Gizmos.DrawWireSphere(_puntoBase, radioDeteccion);
-        Gizmos.DrawWireSphere(_puntoSuperior, radioDeteccion);
-
-        Vector3 _derecha = transform.right * radioDeteccion;
-        Vector3 _adelante = transform.forward * radioDeteccion;
-
-        Gizmos.DrawLine(_puntoBase + _derecha, _puntoSuperior + _derecha);
-        Gizmos.DrawLine(_puntoBase - _derecha, _puntoSuperior - _derecha);
-        Gizmos.DrawLine(_puntoBase + _adelante, _puntoSuperior + _adelante);
-        Gizmos.DrawLine(_puntoBase - _adelante, _puntoSuperior - _adelante);
+        CalcularCapsula(out Vector3 b, out Vector3 s);
+        Gizmos.DrawWireSphere(b, radioDeteccion);
+        Gizmos.DrawWireSphere(s, radioDeteccion);
     }
 }

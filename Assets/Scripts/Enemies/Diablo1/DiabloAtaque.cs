@@ -12,6 +12,15 @@ public class DiabloAtaque : MonoBehaviour
     public void IntentarAtacar(Transform puntoMano, IAgarraObjetos objetivo)
     {
         if (enCooldown || objetivo == null) return;
+
+        // Antes de atacar, verificar si el objetivo tiene un objeto en la mano
+        if (objetivo.TieneObjeto)
+        {
+            // Soltar el objeto y aplicar el mensaje de -1 de Hielo
+            objetivo.PerderObjeto();
+            Debug.Log("-1 de Hielo por la colisión!");
+        }
+
         StartCoroutine(Atacar(puntoMano, objetivo));
     }
 

@@ -235,6 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ed8a4cfe0ea55c49a810bd616349f64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nombreSocketObjetivo: Mano
 --- !u!54 &211010378
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -479,6 +480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01bcaa535f999f34a9c864a992e6aebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nombreSocketObjetivo: Mano
   maskData: {fileID: 11400000, guid: c8a736ba407e403479e8f35b6204e998, type: 2}
 --- !u!1001 &382584886
 PrefabInstance:
@@ -540,6 +542,26 @@ PrefabInstance:
       propertyPath: fuerzaImpactoMin
       value: 1.89
       objectReference: {fileID: 0}
+    - target: {fileID: 6189189102767479879, guid: 6176f4d70ecadd847a18eaec4644ad27, type: 3}
+      propertyPath: sockets.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6189189102767479879, guid: 6176f4d70ecadd847a18eaec4644ad27, type: 3}
+      propertyPath: sockets.Array.data[0].nombre
+      value: Cabeza
+      objectReference: {fileID: 0}
+    - target: {fileID: 6189189102767479879, guid: 6176f4d70ecadd847a18eaec4644ad27, type: 3}
+      propertyPath: sockets.Array.data[1].nombre
+      value: Mano
+      objectReference: {fileID: 0}
+    - target: {fileID: 6189189102767479879, guid: 6176f4d70ecadd847a18eaec4644ad27, type: 3}
+      propertyPath: sockets.Array.data[0].transform
+      value: 
+      objectReference: {fileID: 1733644109}
+    - target: {fileID: 6189189102767479879, guid: 6176f4d70ecadd847a18eaec4644ad27, type: 3}
+      propertyPath: sockets.Array.data[1].transform
+      value: 
+      objectReference: {fileID: 507200041}
     - target: {fileID: 6654846877221580153, guid: 6176f4d70ecadd847a18eaec4644ad27, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.1832923
@@ -714,7 +736,7 @@ MonoBehaviour:
     m_Bits: 0
   objetivos:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 64
 --- !u!4 &510789782
 Transform:
   m_ObjectHideFlags: 0
@@ -1401,7 +1423,7 @@ MonoBehaviour:
     m_Bits: 0
   objetivos:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 64
 --- !u!4 &1303765649
 Transform:
   m_ObjectHideFlags: 0
@@ -1666,6 +1688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01bcaa535f999f34a9c864a992e6aebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nombreSocketObjetivo: Mano
   maskData: {fileID: 11400000, guid: c8a736ba407e403479e8f35b6204e998, type: 2}
 --- !u!65 &1351956372
 BoxCollider:
@@ -1837,6 +1860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ed8a4cfe0ea55c49a810bd616349f64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nombreSocketObjetivo: Mano
 --- !u!54 &1420793527
 Rigidbody:
   m_ObjectHideFlags: 0

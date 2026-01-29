@@ -53,11 +53,10 @@ public class SensorVision : MonoBehaviour
             if (!buffer[i].TryGetComponent(out IAgarraObjetos objetivo))
                 continue;
 
-            /** Solo interesa si el objetivo tiene algo */
-            if (!objetivo.TieneObjeto)
+            Transform mano = objetivo.ObtenerPuntoMano();
+            if (mano == null)
                 continue;
 
-            Transform mano = objetivo.ObtenerPuntoMano();
             Vector3 toTarget = mano.position - origen;
 
             /** Comprobacion de distancia al cuadrado (mas eficiente) */
@@ -81,6 +80,7 @@ public class SensorVision : MonoBehaviour
                 continue;
 
             puntoMano = mano;
+
             return objetivo;
         }
 
