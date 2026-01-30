@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class IndicadorApuntado : MonoBehaviour
 {
-    [SerializeField] private Transform flecha3D; // Arrastra tu modelo 3D aquí
+    [SerializeField] private Transform flecha3D;
     [SerializeField] private Camera camaraPrincipal;
 
    [SerializeField] private float arcoVision = 180f;
