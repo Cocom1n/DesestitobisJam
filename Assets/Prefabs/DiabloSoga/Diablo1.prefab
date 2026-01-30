@@ -257,6 +257,7 @@ GameObject:
   - component: {fileID: 4523735183840549183}
   - component: {fileID: 2722813942633120495}
   - component: {fileID: 5957329080481471799}
+  - component: {fileID: 789893692828356907}
   m_Layer: 0
   m_Name: Diablo1
   m_TagString: Untagged
@@ -431,6 +432,8 @@ MonoBehaviour:
   soga: {fileID: 6742510903174035017}
   puntoDisparo: {fileID: 5445317184938115329}
   cooldown: 2
+  ScriptJugador: {fileID: 0}
+  interactorJugador: {fileID: 0}
 --- !u!114 &2722813942633120495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -455,6 +458,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a2938f2e84de9445a8fe96037004cb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &789893692828356907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3468879643747902260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb3a65ef9159cd2489997f7d5ec56802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vidaMaxima: 10
 --- !u!1 &3739249153556602124
 GameObject:
   m_ObjectHideFlags: 0
