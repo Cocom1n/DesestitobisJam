@@ -8,6 +8,22 @@ public class DiabloAtaque : MonoBehaviour
     [SerializeField] private float cooldown = 2f;
 
     private bool enCooldown;
+    [SerializeField] private SerElectrocutado ScriptJugador;
+    [SerializeField] private InteractorJugador interactorJugador;
+
+    private void Start()
+    {
+        // suscribirse al evento AlMorir
+        if (ScriptJugador != null)
+        {
+            ScriptJugador.AlMorir += OnJugadorMuerto;
+        }
+    }
+
+    private void OnJugadorMuerto()
+    {
+        interactorJugador.PerderTodosLosObjetos();
+    }
 
     public void IntentarAtacar(Transform puntoMano, IAgarraObjetos objetivo)
     {
@@ -17,8 +33,7 @@ public class DiabloAtaque : MonoBehaviour
         if (objetivo.TieneObjeto)
         {
             // Soltar el objeto y aplicar el mensaje de -1 de Hielo
-            objetivo.PerderObjeto();
-            Debug.Log("-1 de Hielo por la colisión!");
+            //objetivo.PerderObjeto();
         }
 
         StartCoroutine(Atacar(puntoMano, objetivo));
