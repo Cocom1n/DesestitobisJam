@@ -5,8 +5,8 @@ public class DiabloFila : MonoBehaviour
     public float velocidad = 5f;
     public float distanciaDescenso = 1f;
 
-    public float limiteInferior = -10f;
-    public float limiteSuperior = 10f;
+    public float limiteInferior = -3f;
+    public float limiteSuperior = 3f;
     
     private int direccionHorizontal = 1; // 1 = Derecha, -1 = Izquierda
     private int direccionVertical = -1;  // -1 baja, 1 sube
