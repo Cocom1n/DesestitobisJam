@@ -5751,7 +5751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038053988a9c4944d809b41cdcd27177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiempoLimite: 15
+  tiempoLimite: 30
   panelVictoria: {fileID: 1048337766}
   panelDerrota: {fileID: 1157483332}
   textoContador: {fileID: 890494007}
