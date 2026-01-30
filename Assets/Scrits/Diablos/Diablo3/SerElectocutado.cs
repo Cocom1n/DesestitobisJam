@@ -3,6 +3,7 @@ using System;
 
 public class SerElectrocutado : MonoBehaviour, IElectrocutable
 {
+    [SerializeField] private ParticleSystem fxParticulasHielos;
     [SerializeField] private int vidaInicial = 5;
     private int vidaActual;
 
@@ -21,6 +22,11 @@ public class SerElectrocutado : MonoBehaviour, IElectrocutable
 
         vidaActual--;
 
+        if (fxParticulasHielos != null)
+        {
+            fxParticulasHielos.Emit(1);
+        }
+
         AlCambiarVida?.Invoke(vidaActual); 
 
         if (vidaActual <= 0)
@@ -32,6 +38,10 @@ public class SerElectrocutado : MonoBehaviour, IElectrocutable
 
     public void Morir()
     {
+        if (fxParticulasHielos != null)
+        {
+            fxParticulasHielos.Emit(5);
+        }
         AlMorir?.Invoke();
     }
 
