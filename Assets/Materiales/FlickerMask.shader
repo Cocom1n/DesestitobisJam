@@ -135,7 +135,7 @@ Shader "Custom/FlickerMaskShader"
             {
                 Varyings output;
                 UNITY_SETUP_INSTANCE_ID(input);
-                output.positionCS = GetShadowPositionHClip(input.positionOS.xyz, input.normalOS);
+                output.positionCS = TransformObjectToHClip(input.positionOS.xyz);
                 return output;
             }
 

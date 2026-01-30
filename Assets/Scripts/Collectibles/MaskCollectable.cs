@@ -23,7 +23,7 @@ public class MaskCollectable : CollectibleItem
         base.Awake();
         /** Configuracion por defecto para mascaras */
         nombreSocketObjetivo = "Cabeza";
-        
+
         targetRenderer = GetComponent<Renderer>();
         if (maskData != null && maskData.lifetime > 0)
         {
@@ -41,7 +41,8 @@ public class MaskCollectable : CollectibleItem
         if (base.SerRecogido(receptor))
         {
             AplicarEfectos(receptor.ObtenerEfectos());
-        Debug.Log($"Mascara {maskData.maskName} recolectada");
+            Debug.Log($"Mascara {maskData.maskName} recolectada");
+            NotificationManager.Instance.ShowMaskInfo(maskData);
             return true;
         }
         return false;
@@ -60,7 +61,7 @@ public class MaskCollectable : CollectibleItem
     {
         // verioficar expira si es temporal y no ha expirado
         if (maskData == null || maskData.lifetime <= 0 || expiro) return;
-        
+
         expiro = true;
         base.Soltar();
         OnMaskReleased?.Invoke(this);
