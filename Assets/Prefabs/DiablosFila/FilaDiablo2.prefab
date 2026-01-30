@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8896448963638729206}
   - component: {fileID: 5007689476541312476}
   - component: {fileID: 3457759149404203197}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: humano1 1 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 658463960678642772}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.1241522, y: 0, z: -24.799322}
+  m_LocalPosition: {x: -3.1241522, y: 0, z: 0}
   m_LocalScale: {x: 0.3386363, y: 0.3386363, z: 0.3386363}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 9060464865675153355}
   - component: {fileID: 4878901377312062433}
   - component: {fileID: 2970080353109524096}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: humano1 1 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +197,7 @@ Transform:
   m_GameObject: {fileID: 1146412961695801961}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.6111522, y: 0, z: -24.799322}
+  m_LocalPosition: {x: -3.6111522, y: 0, z: 0}
   m_LocalScale: {x: 0.3386363, y: 0.3386363, z: 0.3386363}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 5768225729625280674}
   - component: {fileID: 7927655321373615240}
   - component: {fileID: 326016396588311017}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: humano1 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -363,7 +363,7 @@ Transform:
   m_GameObject: {fileID: 2475017119136546048}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.1301522, y: 0, z: -24.799322}
+  m_LocalPosition: {x: -2.1301522, y: 0, z: 0}
   m_LocalScale: {x: 0.3386363, y: 0.3386363, z: 0.3386363}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -513,7 +513,7 @@ GameObject:
   - component: {fileID: 6307279785822046853}
   - component: {fileID: 872622080765854624}
   - component: {fileID: 5490206555912657747}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Diablo2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -529,7 +529,7 @@ Transform:
   m_GameObject: {fileID: 4011475991149890667}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.6011523, y: 0, z: -24.799322}
+  m_LocalPosition: {x: -1.6011523, y: 0, z: 0}
   m_LocalScale: {x: 0.49427354, y: 0.49427354, z: 0.49427354}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -674,7 +674,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3248864552731974716}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FilaDiablo2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -717,7 +717,7 @@ GameObject:
   - component: {fileID: 1298765977029407031}
   - component: {fileID: 3174561614830732573}
   - component: {fileID: 5083649547616338044}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: humano1 1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -733,7 +733,7 @@ Transform:
   m_GameObject: {fileID: 6941164747438087317}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.6091523, y: 0, z: -24.799322}
+  m_LocalPosition: {x: -2.6091523, y: 0, z: 0}
   m_LocalScale: {x: 0.3386363, y: 0.3386363, z: 0.3386363}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -883,7 +883,7 @@ GameObject:
   - component: {fileID: 1991639158517270304}
   - component: {fileID: 2714495735563219722}
   - component: {fileID: 5704193555793327723}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: humano1 1 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -899,7 +899,7 @@ Transform:
   m_GameObject: {fileID: 7635401314253384322}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.131152, y: 0, z: -24.799322}
+  m_LocalPosition: {x: -4.131152, y: 0, z: 0}
   m_LocalScale: {x: 0.3386363, y: 0.3386363, z: 0.3386363}
   m_ConstrainProportionsScale: 0
   m_Children: []

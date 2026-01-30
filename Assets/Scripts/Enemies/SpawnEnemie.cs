@@ -33,7 +33,7 @@ public class SpawnEnemie : MonoBehaviour
 
         int conteo = ContarEnemigosPorNombre(candidato.name);
 
-        if (conteo < 2)
+        if (conteo < 3)
         {
             Transform puntoElegido = puntosSpawn[Random.Range(0, puntosSpawn.Length)];
             Instantiate(candidato, puntoElegido.position, puntoElegido.rotation);

@@ -265,7 +265,7 @@ Transform:
   m_GameObject: {fileID: 85802398}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5185041, y: 0.78, z: -3.1}
+  m_LocalPosition: {x: -1.13, y: 0.78, z: -19.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1426,6 +1426,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1939361696696083443, guid: 6be42b32a5842f641861e25b5e58f107, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2685510116321006709, guid: 6be42b32a5842f641861e25b5e58f107, type: 3}
       propertyPath: 'puntosPatrulla.Array.data[0]'
       value: 
@@ -1450,6 +1454,10 @@ PrefabInstance:
       propertyPath: 'puntosPatrulla.Array.data[5]'
       value: 
       objectReference: {fileID: 1823328091}
+    - target: {fileID: 3031673358844637900, guid: 6be42b32a5842f641861e25b5e58f107, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3335965868518231411, guid: 6be42b32a5842f641861e25b5e58f107, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.22
@@ -1490,13 +1498,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3380573409248937945, guid: 6be42b32a5842f641861e25b5e58f107, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3468879643747902260, guid: 6be42b32a5842f641861e25b5e58f107, type: 3}
       propertyPath: m_Name
       value: Diablo1
       objectReference: {fileID: 0}
     - target: {fileID: 3468879643747902260, guid: 6be42b32a5842f641861e25b5e58f107, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3468879643747902260, guid: 6be42b32a5842f641861e25b5e58f107, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3739249153556602124, guid: 6be42b32a5842f641861e25b5e58f107, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4523735183840549183, guid: 6be42b32a5842f641861e25b5e58f107, type: 3}
       propertyPath: ScriptJugador
@@ -1506,6 +1526,10 @@ PrefabInstance:
       propertyPath: interactorJugador
       value: 
       objectReference: {fileID: 1906639343}
+    - target: {fileID: 8004828145867359464, guid: 6be42b32a5842f641861e25b5e58f107, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3236,6 +3260,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1891442227
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1891442228}
+  m_Layer: 0
+  m_Name: PuntoSpawn (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1891442228
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891442227}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.5, y: 0.91, z: -3.13}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1906639311 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5070629542052640438, guid: 6176f4d70ecadd847a18eaec4644ad27, type: 3}
@@ -3649,4 +3704,5 @@ SceneRoots:
   - {fileID: 85802399}
   - {fileID: 1885962472}
   - {fileID: 739358841}
+  - {fileID: 1891442228}
   - {fileID: 8513463826397967723}
