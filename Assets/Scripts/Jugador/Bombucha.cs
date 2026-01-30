@@ -4,9 +4,14 @@ public class Bombucha : MonoBehaviour
 {
     private Rigidbody rb;
     private void Awake() => rb = GetComponent<Rigidbody>();
-    
+    [SerializeField] private int danio = 5;
     private void OnCollisionEnter(Collision collision)
     {
+        IDaniable daniable = collision.transform.GetComponent<IDaniable>();
+        if(daniable != null)
+        {
+            daniable.RecibirDanio(danio);
+        }
         Desactivar();
     }
     public void Lanzar(Vector3 posicion, Vector3 fuerza)
