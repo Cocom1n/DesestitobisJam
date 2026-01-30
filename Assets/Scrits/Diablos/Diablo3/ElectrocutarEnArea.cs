@@ -4,6 +4,7 @@ public class ElectrocutarEnArea : MonoBehaviour
 {
     [Header("Configuración")]
     [SerializeField] private GameObject areaElectrocucion;
+    [SerializeField] private GameObject particulas;
     [SerializeField] private float intervaloElectrocucion = 5f;
     [SerializeField] private float duracionArea = 0.5f;
 
@@ -16,6 +17,7 @@ public class ElectrocutarEnArea : MonoBehaviour
         if (areaElectrocucion != null)
         {
             areaElectrocucion.SetActive(false);
+            particulas.SetActive(false);
         }
     }
 
@@ -35,6 +37,7 @@ public class ElectrocutarEnArea : MonoBehaviour
         if (areaElectrocucion != null)
         {
             areaElectrocucion.SetActive(true);
+            particulas.SetActive(true);
             Invoke(nameof(DesactivarAreaElectrocucion), duracionArea);
         }
     }
@@ -44,6 +47,7 @@ public class ElectrocutarEnArea : MonoBehaviour
         if (areaElectrocucion != null)
         {
             areaElectrocucion.SetActive(false);
+            particulas.SetActive(false);
         }
     }
 }
