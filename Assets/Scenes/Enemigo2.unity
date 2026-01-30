@@ -268,6 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3bdc41a83d6db945828104ac19bdc3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  danio: 5
 --- !u!1 &199462338
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,6 +283,7 @@ GameObject:
   - component: {fileID: 199462341}
   - component: {fileID: 199462340}
   - component: {fileID: 199462339}
+  - component: {fileID: 199462345}
   m_Layer: 0
   m_Name: humano2
   m_TagString: Untagged
@@ -420,6 +422,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &199462345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199462338}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb3a65ef9159cd2489997f7d5ec56802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vidaMaxima: 10
 --- !u!1 &357871300
 GameObject:
   m_ObjectHideFlags: 0
@@ -679,6 +694,7 @@ GameObject:
   - component: {fileID: 613325410}
   - component: {fileID: 613325409}
   - component: {fileID: 613325408}
+  - component: {fileID: 613325414}
   m_Layer: 0
   m_Name: humano3
   m_TagString: Untagged
@@ -817,6 +833,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &613325414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613325407}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb3a65ef9159cd2489997f7d5ec56802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vidaMaxima: 10
 --- !u!1 &774181943
 GameObject:
   m_ObjectHideFlags: 0
@@ -1063,6 +1092,7 @@ GameObject:
   - component: {fileID: 1233115058}
   - component: {fileID: 1233115057}
   - component: {fileID: 1233115056}
+  - component: {fileID: 1233115062}
   m_Layer: 0
   m_Name: humano1
   m_TagString: Untagged
@@ -1201,6 +1231,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1233115062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233115055}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb3a65ef9159cd2489997f7d5ec56802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vidaMaxima: 10
 --- !u!1 &1243560428
 GameObject:
   m_ObjectHideFlags: 0
@@ -1234,6 +1277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3bdc41a83d6db945828104ac19bdc3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  danio: 5
 --- !u!54 &1243560430
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1496,6 +1540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3bdc41a83d6db945828104ac19bdc3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  danio: 5
 --- !u!54 &1350082626
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2051,6 +2096,7 @@ GameObject:
   - component: {fileID: 1656721148}
   - component: {fileID: 1656721152}
   - component: {fileID: 1656721153}
+  - component: {fileID: 1656721154}
   m_Layer: 0
   m_Name: Diablo
   m_TagString: Untagged
@@ -2190,6 +2236,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1656721154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656721147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb3a65ef9159cd2489997f7d5ec56802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vidaMaxima: 10
 --- !u!1 &1948417623
 GameObject:
   m_ObjectHideFlags: 0
@@ -2338,6 +2397,8 @@ MonoBehaviour:
   - {fileID: 1243560429}
   - {fileID: 1350082625}
   rendererFlecha: {fileID: 7972299633316550245}
+  maxMunicion: 3
+  tiempoRecarga: 10
 --- !u!120 &2111678675
 LineRenderer:
   serializedVersion: 2
