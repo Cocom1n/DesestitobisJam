@@ -20,7 +20,7 @@ public class InteractorJugador : MonoBehaviour, IAgarraObjetos, IReceptorInterac
     [SerializeField] private LayerMask capaRecolectables;
 
     [Header("Coleccion de Sockets")]
-    [SerializeField] private List<SocketInfo> sockets = new List<SocketInfo>();
+    [SerializeField] private List<SocketInfo> sockets;
 
     [Header("Configuracion de Desprendimiento")]
     [SerializeField] private float fuerzaImpactoMin = 2f;
@@ -30,7 +30,7 @@ public class InteractorJugador : MonoBehaviour, IAgarraObjetos, IReceptorInterac
     private EffectController effectController;
 
     private readonly Collider[] _bufferColisionadores = new Collider[5];
-    private readonly HashSet<GameObject> _procesados = new HashSet<GameObject>();
+    private readonly HashSet<GameObject> _procesados;
 
     /** IAgarraObjetos: Indica si alguno de los sockets esta ocupado */
     public bool TieneObjeto
@@ -107,7 +107,10 @@ public class InteractorJugador : MonoBehaviour, IAgarraObjetos, IReceptorInterac
         {
             if (s.nombre == "Cabeza" && s.ocupante != null)
             {
-                effectController?.RemoveMaskEffects();
+                if (effectController != null)
+                {
+                    effectController.RemoveMaskEffects();
+                }
                 s.ocupante.Soltar();
                 s.ocupante = null;
                 return;
@@ -142,7 +145,10 @@ public class InteractorJugador : MonoBehaviour, IAgarraObjetos, IReceptorInterac
 
         if (victima == null) return;
 
-        if (victima.nombre == "Cabeza") effectController?.RemoveMaskEffects();
+        if (victima.nombre == "Cabeza" && effectController != null)
+        {
+            effectController.RemoveMaskEffects();
+        }
 
         GameObject go = victima.ocupante.ObtenerGameObject();
         victima.ocupante.Soltar();
