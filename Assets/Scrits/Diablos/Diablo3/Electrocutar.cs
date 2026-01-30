@@ -9,6 +9,17 @@ public class Electrocutar : MonoBehaviour
         if (auz)
         {
             electrocutable.SoltarHielos();
+            Debug.Log("Electrocutado");
+        }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        bool auz = other.gameObject.TryGetComponent<IElectrocutable>(out IElectrocutable electrocutable);
+        if (auz)
+        {
+            electrocutable.SoltarHielos();
+            Debug.Log("Electrocutado");
         }
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created

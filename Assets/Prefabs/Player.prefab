@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 3033286747104008993}
   - component: {fileID: 6189189102767479879}
   - component: {fileID: 1687746044647707658}
-  - component: {fileID: 1156091993812577129}
+  - component: {fileID: 847685702852192864}
   - component: {fileID: 9035446378390551929}
   - component: {fileID: 3554446799918079912}
   m_Layer: 0
@@ -295,6 +295,9 @@ MonoBehaviour:
   capaRecolectables:
     serializedVersion: 2
     m_Bits: 8
+  fuerzaImpactoMin: 2
+  fuerzaImpactoMax: 4
+  torqueImpacto: 10
   puntoMano: {fileID: 4587880573192698896}
 --- !u!114 &1687746044647707658
 MonoBehaviour:
@@ -310,7 +313,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alturaSalto: 1.2
   gravedad: -9.81
---- !u!114 &1156091993812577129
+--- !u!114 &847685702852192864
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -319,7 +322,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5070629542052640438}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 876119bf21c4a36488265712a0b13c1e, type: 3}
+  m_Script: {fileID: 11500000, guid: f11d737f67b34e842bfb30077a0cf0c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   velocidad: 5

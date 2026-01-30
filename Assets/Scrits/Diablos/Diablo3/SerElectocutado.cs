@@ -31,7 +31,6 @@ public class SerElectrocutado : MonoBehaviour, IElectrocutable
 
     public void Morir()
     {
-        Debug.Log("Lógica: El jugador ha muerto.");
         AlMorir?.Invoke();
     }
 }

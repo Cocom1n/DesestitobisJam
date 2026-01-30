@@ -25,7 +25,6 @@ public class DiabloIA : MonoBehaviour
         /** Inicializar estados */
         EstadoPatrulla.Inicializar(this);
         EstadoAtaque.Inicializar(this);
-
         CambiarEstado(EstadoPatrulla);
     }
 
