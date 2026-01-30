@@ -127,6 +127,20 @@ public class InteractorJugador : MonoBehaviour, IAgarraObjetos, IReceptorInterac
         }
     }
 
+    private void SoltarObjeto(SocketInfo socket)
+    {
+        GameObject go = socket.ocupante.ObtenerGameObject();
+        socket.ocupante.Soltar();
+        socket.ocupante = null;
+
+        if (go != null && go.TryGetComponent(out Rigidbody rb))
+        {
+            Vector3 dir = (Vector3.up + Random.insideUnitSphere * 0.5f).normalized;
+            rb.AddForce(dir * Random.Range(fuerzaImpactoMin, fuerzaImpactoMax), ForceMode.Impulse);
+            rb.AddTorque(Random.insideUnitSphere * torqueImpacto, ForceMode.Impulse);
+        }
+    }
+
     /** IAgarraObjetos: El Diablo nos roba un objeto (Cabeza > Otros) */
     public void PerderObjeto()
     {
@@ -143,18 +157,20 @@ public class InteractorJugador : MonoBehaviour, IAgarraObjetos, IReceptorInterac
         if (victima == null) return;
 
         if (victima.nombre == "Cabeza") effectController?.RemoveMaskEffects();
-
-        GameObject go = victima.ocupante.ObtenerGameObject();
-        victima.ocupante.Soltar();
-        victima.ocupante = null;
-
-        if (go != null && go.TryGetComponent(out Rigidbody rb))
+        SoltarObjeto(victima);
+    }
+    /** Metodo para soltar todos los objetos que tiene el jugador */
+    public void PerderTodosLosObjetos()
+    {
+        foreach (var s in sockets)
         {
-            Vector3 dir = (Vector3.up + Random.insideUnitSphere * 0.5f).normalized;
-            rb.AddForce(dir * Random.Range(fuerzaImpactoMin, fuerzaImpactoMax), ForceMode.Impulse);
-            rb.AddTorque(Random.insideUnitSphere * torqueImpacto, ForceMode.Impulse);
+            if (s.ocupante != null)
+            {
+                SoltarObjeto(s);
+            }
         }
     }
+
 
     public GameObject ObtenerObjetoSostenido()
     {

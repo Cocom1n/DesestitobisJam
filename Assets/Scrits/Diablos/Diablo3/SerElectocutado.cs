@@ -27,6 +27,7 @@ public class SerElectrocutado : MonoBehaviour, IElectrocutable
         {
             Morir();
         }
+        Debug.Log("vidaActual actual:" + vidaActual);
     }
 
     public void Morir()
