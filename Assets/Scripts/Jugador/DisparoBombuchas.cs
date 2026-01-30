@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class DisparoBombuchas : MonoBehaviour
 {
@@ -17,9 +18,20 @@ public class DisparoBombuchas : MonoBehaviour
         Color.red,    
         Color.blue   
     };
+
+    [SerializeField] private int maxMunicion = 3;
+    private int municionActual;
+    private bool estaRecargando = false;
+    [SerializeField] private float tiempoRecarga = 10f;
+    public bool PuedeDisparar => !estaRecargando && municionActual > 0;
+
+    void Start()
+    {
+        municionActual = maxMunicion;
+    }
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !estaRecargando)
         {
             LanzarHaciaMouse();
         }
@@ -53,6 +65,14 @@ public class DisparoBombuchas : MonoBehaviour
                 if (!b.gameObject.activeInHierarchy)
                 {
                     b.Lanzar(puntoDisparo.position, direccionFinal * fuerzaLanzamiento);
+
+                    municionActual--;
+
+                    if (municionActual <= 0)
+                    {
+                        StartCoroutine(Recargar());
+                    }
+
                     break; 
                 }
             }
@@ -71,4 +91,15 @@ public class DisparoBombuchas : MonoBehaviour
 
         rendererFlecha.material.color = colorElegido;
     }
+
+    IEnumerator Recargar()
+    {
+        estaRecargando = true;
+
+        yield return new WaitForSeconds(tiempoRecarga);
+
+        municionActual = maxMunicion;
+        estaRecargando = false;
+    }
+
 }

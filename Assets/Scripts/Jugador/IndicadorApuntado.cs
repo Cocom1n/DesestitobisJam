@@ -7,8 +7,18 @@ public class IndicadorApuntado : MonoBehaviour
 
    [SerializeField] private float arcoVision = 180f;
     [SerializeField] private LayerMask capaSuelo;
+    private DisparoBombuchas scriptDisparo;
+    void Start()
+    {
+        scriptDisparo = GetComponent<DisparoBombuchas>();
+    }
     void Update()
     {
+        if (scriptDisparo != null && !scriptDisparo.PuedeDisparar)
+        {
+            flecha3D.gameObject.SetActive(false);
+            return;
+        }
         ActualizarRotacionIndicador();
     }
 
