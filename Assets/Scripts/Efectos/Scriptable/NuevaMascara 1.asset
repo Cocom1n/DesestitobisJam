@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NuevaMascara 1
   m_EditorClassIdentifier: 
   maskName: oro
-  icon: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  icon: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
   lifetime: 2
   effects:
   - effect: {fileID: 11400000, guid: 950b74d921333454d8f2f483b17591b4, type: 2}
@@ -24,4 +24,4 @@ MonoBehaviour:
     isPermanent: 1
   - effect: {fileID: 11400000, guid: 950b74d921333454d8f2f483b17591b4, type: 2}
     value: 2
-    isPermanent: 1
+    isPermanent: 0
