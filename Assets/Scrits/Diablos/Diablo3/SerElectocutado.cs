@@ -34,4 +34,9 @@ public class SerElectrocutado : MonoBehaviour, IElectrocutable
     {
         AlMorir?.Invoke();
     }
+
+    public int ObtenerVidaActual()
+    {
+        return vidaActual;
+    }
 }
