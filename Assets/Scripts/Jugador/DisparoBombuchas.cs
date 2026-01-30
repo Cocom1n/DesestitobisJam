@@ -10,6 +10,13 @@ public class DisparoBombuchas : MonoBehaviour
     [SerializeField] private float arcoVision = 180f;
 
     [SerializeField] private Bombucha[] poolDeBombuchas;
+    [SerializeField] private Renderer rendererFlecha;
+    private Color[] coloresIntensos = {
+        Color.green,
+        Color.yellow,
+        Color.red,    
+        Color.blue   
+    };
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -39,7 +46,8 @@ public class DisparoBombuchas : MonoBehaviour
             {
                 rb.AddForce(direccionFinal * fuerzaLanzamiento, ForceMode.Impulse);
             }*/
-            
+            CambiarColorFlecha();
+
             foreach (Bombucha b in poolDeBombuchas)
             {
                 if (!b.gameObject.activeInHierarchy)
@@ -49,7 +57,18 @@ public class DisparoBombuchas : MonoBehaviour
                 }
             }
 
-            Debug.DrawRay(puntoDisparo.position, direccionFinal * 5, Color.red, 2f);
+            //Debug.DrawRay(puntoDisparo.position, direccionFinal * 5, Color.red, 2f);
+
         }
+    }
+
+    private void CambiarColorFlecha()
+    {
+        if (rendererFlecha == null) return;
+
+        int indiceAleatorio = Random.Range(0, coloresIntensos.Length);
+        Color colorElegido = coloresIntensos[indiceAleatorio];
+
+        rendererFlecha.material.color = colorElegido;
     }
 }
