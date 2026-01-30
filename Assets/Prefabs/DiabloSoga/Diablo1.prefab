@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1298339567824842771}
   - component: {fileID: 1679234757852946492}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: vision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5445317184938115329}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PuntoDisparo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 973931156661901442}
   - component: {fileID: 7763424477004869388}
   - component: {fileID: 6742510903174035017}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: frente
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 2722813942633120495}
   - component: {fileID: 5957329080481471799}
   - component: {fileID: 789893692828356907}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Diablo1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -481,7 +481,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5613474853571119523}
   - component: {fileID: 6530181651903211647}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: vision (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -536,7 +536,7 @@ GameObject:
   - component: {fileID: 7280930832596272649}
   - component: {fileID: 2680460695574793149}
   - component: {fileID: 4005795521673240184}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
