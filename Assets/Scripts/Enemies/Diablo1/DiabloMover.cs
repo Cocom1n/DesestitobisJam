@@ -1,5 +1,6 @@
 using UnityEngine;
 
+/** Clase encargada del movimiento y patrullaje del Diablo */
 public class DiabloMover : MonoBehaviour
 {
     [SerializeField] private Transform[] puntosPatrulla;
@@ -13,9 +14,13 @@ public class DiabloMover : MonoBehaviour
     private int indice;
     private float tiempoBaile;
 
+    /******* METODOS *******/
+
+    /** Metodo que mueve al Diablo entre los puntos de patrullaje */
     public Vector3 Patrullar()
     {
-        if (puntosPatrulla == null || puntosPatrulla.Length == 0) return Vector3.zero; ;
+        if (puntosPatrulla == null || puntosPatrulla.Length == 0)
+            return Vector3.zero;
 
         Vector3 _pos = transform.position;
         Vector3 _dest = puntosPatrulla[indice].position;
@@ -32,19 +37,30 @@ public class DiabloMover : MonoBehaviour
         _dir.Normalize();
         _dest += CalcularBaile(_dir);
 
-        Vector3 _nuevaPos = Vector3.MoveTowards(
-            _pos,
-            _dest,
-            velocidad * Time.deltaTime
-        );
-
+        Vector3 _nuevaPos = Vector3.MoveTowards(_pos, _dest, velocidad * Time.deltaTime);
         transform.position = _nuevaPos;
         return _dir;
     }
+
+    /** Metodo que calcula el movimiento adicional de baile en base a la dirección */
     private Vector3 CalcularBaile(Vector3 direccion)
     {
         tiempoBaile += Time.deltaTime * frecuencia;
         return Vector3.Cross(direccion, Vector3.up) *
                (Mathf.Sin(tiempoBaile) * amplitud);
+    }
+
+    /******* GETTERS Y SETTERS *******/
+
+    /** Setter para asignar nuevos puntos de patrullaje */
+    public void SetPuntosPatrulla(Transform[] nuevosPuntos)
+    {
+        puntosPatrulla = nuevosPuntos;
+    }
+
+    /** Getter para obtener los puntos de patrullaje actuales */
+    public Transform[] GetPuntosPatrulla()
+    {
+        return puntosPatrulla;
     }
 }
