@@ -39,8 +39,20 @@ public class GetDamage : MonoBehaviour, IDaniable
                 break; 
             }
         }
+
+        Animator anim = GetComponentInChildren<Animator>();
+
+        if(anim != null)
+        {
+            anim.SetTrigger("Morir");
+        }
+
+        if (GetComponent<Collider>() != null) GetComponent<Collider>().enabled = false;
+        if (GetComponent<DiabloFila>() != null) GetComponent<DiabloFila>().enabled = false;
+        if (GetComponent<HumanitoFila>() != null) GetComponent<HumanitoFila>().enabled = false;
+
         //estaMuerto = true;
-        Destroy(gameObject, 1f);
+        Destroy(gameObject, 3f);
         Debug.Log("Me mori :c");
     }
 }
