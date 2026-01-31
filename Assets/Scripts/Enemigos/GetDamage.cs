@@ -50,6 +50,11 @@ public class GetDamage : MonoBehaviour, IDaniable
         if (GetComponent<Collider>() != null) GetComponent<Collider>().enabled = false;
         if (GetComponent<DiabloFila>() != null) GetComponent<DiabloFila>().enabled = false;
         if (GetComponent<HumanitoFila>() != null) GetComponent<HumanitoFila>().enabled = false;
+        
+        if (GetComponent<MovimientoAleatorio>() != null) GetComponent<MovimientoAleatorio>().enabled = false;
+
+        if (GetComponent<DiabloMover>() != null) GetComponent<DiabloMover>().enabled = false;
+        if (GetComponent<DiabloIA>() != null) GetComponent<DiabloIA>().enabled = false;
 
         //estaMuerto = true;
         Destroy(gameObject, 3f);
