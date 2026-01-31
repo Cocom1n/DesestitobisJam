@@ -17,7 +17,7 @@ public class DiabloFila : MonoBehaviour
         transform.Translate(Vector3.right * direccionHorizontal * velocidad * Time.deltaTime, Space.World);
         AjustarRotacion();
     }
-    void AjustarRotacion()
+    /*void AjustarRotacion()
     {
         if (direccionHorizontal == 1)
         {
@@ -26,6 +26,16 @@ public class DiabloFila : MonoBehaviour
         else
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+    }*/
+    void AjustarRotacion()
+    {
+        Vector3 direccionDeMovimiento = new Vector3(direccionHorizontal, 0, 0);
+
+        if (direccionDeMovimiento != Vector3.zero)
+        {
+            Quaternion rotacionDestino = Quaternion.LookRotation(direccionDeMovimiento);
+            transform.rotation = rotacionDestino;
         }
     }
 

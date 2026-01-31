@@ -7,6 +7,8 @@ public class HumanitoFila : MonoBehaviour
     public float velocidadSuave = 10f;
 
     private List<Vector3> historialPosiciones = new List<Vector3>();
+    public GameObject modeloHumano; 
+    public GameObject modeloDiablo;
 
     void Update()
     {
@@ -16,14 +18,30 @@ public class HumanitoFila : MonoBehaviour
 
             if (Vector3.Distance(transform.position, objetivoASeguir.position) > distanciaMinima)
             {
-                transform.position = Vector3.Lerp(transform.position, historialPosiciones[0], Time.deltaTime * velocidadSuave);
-                
+                Vector3 puntoDestino = historialPosiciones[0];
+
+                Vector3 direccion = (puntoDestino - transform.position).normalized;
+                if(direccion != Vector3.zero)
+                {
+                    Quaternion rotacionDestino = Quaternion.LookRotation(direccion);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, rotacionDestino, Time.deltaTime * velocidadSuave);
+                }
+
+                //transform.position = Vector3.Lerp(transform.position, historialPosiciones[0], Time.deltaTime * velocidadSuave);
+                transform.position = Vector3.Lerp(transform.position, puntoDestino, Time.deltaTime * velocidadSuave);
                 historialPosiciones.RemoveAt(0);
             }
         }
     }
     public void AscenderALider()
     {
+        if (modeloHumano != null && modeloDiablo != null)
+        {
+            modeloHumano.SetActive(false);
+            modeloDiablo.SetActive(true); 
+        }
+
+
         DiabloFila nuevoLider = gameObject.AddComponent<DiabloFila>();
 
         nuevoLider.velocidad = 5f;
@@ -35,6 +53,12 @@ public class HumanitoFila : MonoBehaviour
         if (scriptDanio != null)
         {
             scriptDanio.enabled = true;
+        }
+
+        Electrocutar scriptElec = GetComponent<Electrocutar>();
+        if(scriptElec != null)
+        {
+            scriptElec.enabled = true;
         }
 
         Destroy(this);
