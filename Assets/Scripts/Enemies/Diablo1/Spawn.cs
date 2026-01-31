@@ -4,37 +4,43 @@ using System.Collections;
 public class EnemySpawner : MonoBehaviour
 {
     [Header("Configuración de Spawn")]
-    public GameObject diabloPrefab; 
-    public Transform[] puntosSpawn; 
+    public GameObject diabloPrefab;
+    public Transform[] puntosSpawn;
 
     [Header("Configuración de Enemigos")]
     public int maxEnemigos = 3;
     private int enemigosActivos = 0;
 
-    [Header("Patrullaje")]
-
-    private Coroutine spawnCoroutine;
-
     void Start()
     {
-        spawnCoroutine = StartCoroutine(SpawnEnemies());
+        StartCoroutine(SpawnEnemies());
     }
 
     private IEnumerator SpawnEnemies()
     {
-        while (enemigosActivos < maxEnemigos) 
+        while (enemigosActivos < maxEnemigos)
         {
+            // Elige una posición aleatoria de los puntos de spawn disponibles
             Transform spawnPoint = puntosSpawn[Random.Range(0, puntosSpawn.Length)];
 
-            GameObject diablo = Instantiate(diabloPrefab, spawnPoint.position, Quaternion.identity);
+            // Instanciamos un nuevo Diablo
+            GameObject nuevoDiablo = Instantiate(diabloPrefab, spawnPoint.position, Quaternion.identity);
 
-            DiabloMover diabloMover = diablo.GetComponent<DiabloMover>();
-            diabloMover.SetPuntosPatrulla(puntosSpawn); 
-            diabloMover.InitPatrulla();
+            // Obtenemos el script DiabloIA para poder configurarlo
+            DiabloIA diabloIA = nuevoDiablo.GetComponent<DiabloIA>();
+
+            if (diabloIA != null)
+            {
+                // Asignar los puntos de patrullaje
+                diabloIA.AsignarPuntosDePatrullaje(puntosSpawn);
+
+                // Cambiar el estado a Reaparición
+                diabloIA.Reaparecer();
+                Debug.Log("Puntos de patrullaje asignados y Diablo en estado de reaparición.");
+            }
 
             enemigosActivos++;
-
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
         }
     }
 

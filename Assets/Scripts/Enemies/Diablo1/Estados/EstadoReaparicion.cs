@@ -13,23 +13,23 @@ public class EstadoReaparicion : EstadoDiablo
     private IEnumerator ReaparecerYPatrullar()
     {
         Reaparecer();
-        yield return new WaitForSeconds(tiempoEspera);
-
+        yield return new WaitForSeconds(1f);
         cerebro.CambiarEstado(cerebro.EstadoPatrulla);
     }
 
     private void Reaparecer()
     {
-        Transform[] puntosPatrulla = cerebro.Movimiento.puntosPatrulla;
+        // Lógica para que el Diablo reaparezca en una posición aleatoria dentro de los puntos de patrullaje
+        Transform[] puntosPatrulla = cerebro.Movimiento.GetPuntosPatrulla();
         if (puntosPatrulla.Length > 0)
         {
             Transform puntoAleatorio = puntosPatrulla[Random.Range(0, puntosPatrulla.Length)];
-            cerebro.Movimiento.transform.position = puntoAleatorio.position;
+            cerebro.transform.position = puntoAleatorio.position;
         }
     }
 
     public override void Salir()
     {
-        cerebro.Movimiento.InitPatrulla();
+        //cerebro.Movimiento.InitPatrulla();
     }
 }

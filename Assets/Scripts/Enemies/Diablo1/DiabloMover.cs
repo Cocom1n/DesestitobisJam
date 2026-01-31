@@ -12,17 +12,6 @@ public class DiabloMover : MonoBehaviour
 
     private int indice;
     private float tiempoBaile;
-    private bool patrullando = false;
-
-    public void InitPatrulla()
-    {
-        patrullando = true;
-    }
-    public void DetenerPatrullaje()
-    {
-        patrullando = false;
-    }
-
     public Vector3 Patrullar()
     {
         if (puntosPatrulla == null || puntosPatrulla.Length == 0) return Vector3.zero; ;
@@ -57,10 +46,8 @@ public class DiabloMover : MonoBehaviour
         puntosPatrulla = nuevosPuntos;
     }
 
-    public void Matar()
+    public Transform[] GetPuntosPatrulla()
     {
-        var diabloIA = GetComponent<DiabloIA>();
-        diabloIA.MatarDiablo();
+        return puntosPatrulla;
     }
-
 }

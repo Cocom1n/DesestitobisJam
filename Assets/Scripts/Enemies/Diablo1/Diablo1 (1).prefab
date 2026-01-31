@@ -387,6 +387,8 @@ GameObject:
   - component: {fileID: 1191682441086799958}
   - component: {fileID: 1432407813899453606}
   - component: {fileID: 1552332541202682623}
+  - component: {fileID: 8283192468906824763}
+  - component: {fileID: 800288249092224472}
   m_Layer: 0
   m_Name: Diablo1 (1)
   m_TagString: Untagged
@@ -504,6 +506,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EstadoPatrulla: {fileID: 1432407813899453606}
   EstadoAtaque: {fileID: 1552332541202682623}
+  EstadoMuerte: {fileID: 800288249092224472}
+  EstadoReaparicion: {fileID: 8283192468906824763}
   Movimiento: {fileID: 8165429200011944419}
   Rotacion: {fileID: 3958095719072932513}
   Ataque: {fileID: 1191682441086799958}
@@ -585,6 +589,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4a2938f2e84de9445a8fe96037004cb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8283192468906824763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2398921744567214380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 366d18d9f3915e8498b81721a6639490, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &800288249092224472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2398921744567214380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b8c8ce131bc0b14db01e68bb09919c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3397043137132479562

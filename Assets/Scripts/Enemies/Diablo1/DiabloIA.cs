@@ -29,14 +29,9 @@ public class DiabloIA : MonoBehaviour
         EstadoAtaque.Inicializar(this);
         EstadoMuerte.Inicializar(this);
         EstadoReaparicion.Inicializar(this);
-        CambiarEstado(EstadoPatrulla);
+        //estadoActual = EstadoPatrulla;
+        //CambiarEstado(EstadoReaparicion);
     }
-
-    private void Update()
-    {
-        estadoActual.Actualizar();
-    }
-
     public void CambiarEstado(EstadoDiablo nuevoEstado)
     {
         if (estadoActual != null)
@@ -44,6 +39,11 @@ public class DiabloIA : MonoBehaviour
 
         estadoActual = nuevoEstado;
         estadoActual.Entrar();
+    }
+
+    private void Update()
+    {
+        estadoActual.Actualizar();
     }
 
     /** Buscar objetivo usando sensores */
@@ -65,8 +65,20 @@ public class DiabloIA : MonoBehaviour
         PuntoManoObjetivo = null;
         return false;
     }
-    public void MatarDiablo()
+    /** Método que es llamado cuando el Diablo muere */
+    public void Matar()
     {
         CambiarEstado(EstadoMuerte);
+    }
+
+    /** Método que es llamado cuando el Diablo debe reaparecer */
+    public void Reaparecer()
+    {
+        CambiarEstado(EstadoReaparicion);
+    }
+
+    public void AsignarPuntosDePatrullaje(Transform[] nuevosPuntos)
+    {
+        Movimiento.SetPuntosPatrulla(nuevosPuntos); // Asignamos los puntos de patrullaje
     }
 }

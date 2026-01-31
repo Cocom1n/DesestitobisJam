@@ -9,7 +9,7 @@ public class EstadoMuerte : EstadoDiablo
 
     public override void Entrar()
     {
-        cerebro.Movimiento.DetenerPatrullaje();
+        //cerebro.Movimiento.DetenerPatrullaje();
         cerebro.Movimiento.gameObject.SetActive(false);
         cerebro.StartCoroutine(MuerteYReaparicion());  
     }
