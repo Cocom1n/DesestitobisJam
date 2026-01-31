@@ -13,7 +13,30 @@ public class DiabloFila : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Vector3.right * direccionHorizontal * velocidad * Time.deltaTime);
+        //transform.Translate(Vector3.right * direccionHorizontal * velocidad * Time.deltaTime);
+        transform.Translate(Vector3.right * direccionHorizontal * velocidad * Time.deltaTime, Space.World);
+        AjustarRotacion();
+    }
+    /*void AjustarRotacion()
+    {
+        if (direccionHorizontal == 1)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+    }*/
+    void AjustarRotacion()
+    {
+        Vector3 direccionDeMovimiento = new Vector3(direccionHorizontal, 0, 0);
+
+        if (direccionDeMovimiento != Vector3.zero)
+        {
+            Quaternion rotacionDestino = Quaternion.LookRotation(direccionDeMovimiento);
+            transform.rotation = rotacionDestino;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
