@@ -382,6 +382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ed8a4cfe0ea55c49a810bd616349f64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nombreSocketObjetivo: Mano
 --- !u!54 &304102199
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -697,6 +698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ed8a4cfe0ea55c49a810bd616349f64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nombreSocketObjetivo: Mano
 --- !u!54 &755198418
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -877,6 +879,8 @@ MonoBehaviour:
   soga: {fileID: 1550035071}
   puntoDisparo: {fileID: 297042820}
   cooldown: 2
+  ScriptJugador: {fileID: 1023791712}
+  interactorJugador: {fileID: 1023791718}
 --- !u!114 &805774184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1034,6 +1038,39 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6654846877221580153, guid: 6176f4d70ecadd847a18eaec4644ad27, type: 3}
   m_PrefabInstance: {fileID: 1909593454}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1023791711 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1957873730143639745, guid: 6176f4d70ecadd847a18eaec4644ad27, type: 3}
+  m_PrefabInstance: {fileID: 1909593454}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d57e7a4bf89b08e49b0531520fbb17dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1023791712 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2522285008331984105, guid: 6176f4d70ecadd847a18eaec4644ad27, type: 3}
+  m_PrefabInstance: {fileID: 1909593454}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46cb50ea77a635d4a94f44da1d532574, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1023791718 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6189189102767479879, guid: 6176f4d70ecadd847a18eaec4644ad27, type: 3}
+  m_PrefabInstance: {fileID: 1909593454}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55b0f058245e581448ca838268d553e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1025537269
 GameObject:
   m_ObjectHideFlags: 0
@@ -1513,7 +1550,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
+  m_StaticShadowCaster: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1640,6 +1677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ed8a4cfe0ea55c49a810bd616349f64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nombreSocketObjetivo: Mano
 --- !u!54 &1800892294
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1805,10 +1843,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 847685702852192864, guid: 6176f4d70ecadd847a18eaec4644ad27, type: 3}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 1023791711}
+    - target: {fileID: 847685702852192864, guid: 6176f4d70ecadd847a18eaec4644ad27, type: 3}
+      propertyPath: camara
+      value: 
+      objectReference: {fileID: 505900212}
     - target: {fileID: 1156091993812577129, guid: 6176f4d70ecadd847a18eaec4644ad27, type: 3}
       propertyPath: camara
       value: 
       objectReference: {fileID: 505900212}
+    - target: {fileID: 2838986721968171173, guid: 6176f4d70ecadd847a18eaec4644ad27, type: 3}
+      propertyPath: camaraPrincipal
+      value: 
+      objectReference: {fileID: 505900211}
     - target: {fileID: 5070629542052640438, guid: 6176f4d70ecadd847a18eaec4644ad27, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1817,6 +1867,22 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5145079710368733046, guid: 6176f4d70ecadd847a18eaec4644ad27, type: 3}
+      propertyPath: camaraPrincipal
+      value: 
+      objectReference: {fileID: 505900211}
+    - target: {fileID: 6189189102767479879, guid: 6176f4d70ecadd847a18eaec4644ad27, type: 3}
+      propertyPath: sockets.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6189189102767479879, guid: 6176f4d70ecadd847a18eaec4644ad27, type: 3}
+      propertyPath: sockets.Array.data[0].nombre
+      value: Mano
+      objectReference: {fileID: 0}
+    - target: {fileID: 6189189102767479879, guid: 6176f4d70ecadd847a18eaec4644ad27, type: 3}
+      propertyPath: sockets.Array.data[0].transform
+      value: 
+      objectReference: {fileID: 2111366515}
     - target: {fileID: 6654846877221580153, guid: 6176f4d70ecadd847a18eaec4644ad27, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.1832923
@@ -1857,11 +1923,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3391961477465042148, guid: 6176f4d70ecadd847a18eaec4644ad27, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6176f4d70ecadd847a18eaec4644ad27, type: 3}
+--- !u!4 &2111366515 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4587880573192698896, guid: 6176f4d70ecadd847a18eaec4644ad27, type: 3}
+  m_PrefabInstance: {fileID: 1909593454}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
