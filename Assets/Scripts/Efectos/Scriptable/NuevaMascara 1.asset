@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b632aa352e0e5794db303ebd52ebd59e, type: 3}
   m_Name: NuevaMascara 1
   m_EditorClassIdentifier: 
-  maskName: oro
+  maskName: Litio
   icon: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
   lifetime: 2
   effects:
-  - effect: {fileID: 11400000, guid: 950b74d921333454d8f2f483b17591b4, type: 2}
+  - effect: {fileID: 11400000, guid: 066a79ab769ffbc4198286d53a413184, type: 2}
     value: 10
     isPermanent: 0
   - effect: {fileID: 11400000, guid: 66efc5dca0a08514991bf9020c95b47e, type: 2}
     value: 2
-    isPermanent: 0
+    isPermanent: 1
