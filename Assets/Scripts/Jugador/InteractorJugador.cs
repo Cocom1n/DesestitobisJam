@@ -78,13 +78,13 @@ public class InteractorJugador : MonoBehaviour, IAgarraObjetos, IReceptorInterac
             if (s.nombre == nombre && s.ocupante == null)
             {
                 s.ocupante = item;
-                
+
                 /** Logica especifica para liberar el slot si es una mascara */
                 if (item is MaskCollectable mascara)
                 {
                     mascara.OnMaskReleased += (m) => s.ocupante = null;
                 }
-                
+
                 return true;
             }
         }
