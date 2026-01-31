@@ -1494,6 +1494,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 847685702852192864, guid: 6176f4d70ecadd847a18eaec4644ad27, type: 3}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 1432158932}
+    - target: {fileID: 847685702852192864, guid: 6176f4d70ecadd847a18eaec4644ad27, type: 3}
       propertyPath: camara
       value: 
       objectReference: {fileID: 1706755980}
@@ -1501,6 +1505,10 @@ PrefabInstance:
       propertyPath: fxParticulasHielos
       value: 
       objectReference: {fileID: 129847070}
+    - target: {fileID: 2838986721968171173, guid: 6176f4d70ecadd847a18eaec4644ad27, type: 3}
+      propertyPath: camaraPrincipal
+      value: 
+      objectReference: {fileID: 1706755979}
     - target: {fileID: 5070629542052640438, guid: 6176f4d70ecadd847a18eaec4644ad27, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1545,7 +1553,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3391961477465042148, guid: 6176f4d70ecadd847a18eaec4644ad27, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6654846877221580153, guid: 6176f4d70ecadd847a18eaec4644ad27, type: 3}
@@ -2254,6 +2263,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41f83eaaa7d76234b90fbb236ff68cd5, type: 3}
+--- !u!114 &1432158932 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1957873730143639745, guid: 6176f4d70ecadd847a18eaec4644ad27, type: 3}
+  m_PrefabInstance: {fileID: 973486488}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d57e7a4bf89b08e49b0531520fbb17dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1442800240
 GameObject:
   m_ObjectHideFlags: 0
