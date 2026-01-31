@@ -6,6 +6,8 @@ public class DiabloIA : MonoBehaviour
     [Header("Estados")]
     public EstadoPatrulla EstadoPatrulla;
     public EstadoAtaque EstadoAtaque;
+    public EstadoMuerte EstadoMuerte;
+    public EstadoReaparicion EstadoReaparicion;
 
     [Header("Componentes")]
     public DiabloMover Movimiento;
@@ -25,6 +27,8 @@ public class DiabloIA : MonoBehaviour
         /** Inicializar estados */
         EstadoPatrulla.Inicializar(this);
         EstadoAtaque.Inicializar(this);
+        EstadoMuerte.Inicializar(this);
+        EstadoReaparicion.Inicializar(this);
         CambiarEstado(EstadoPatrulla);
     }
 
@@ -60,5 +64,9 @@ public class DiabloIA : MonoBehaviour
         ObjetivoActual = null;
         PuntoManoObjetivo = null;
         return false;
+    }
+    public void MatarDiablo()
+    {
+        CambiarEstado(EstadoMuerte);
     }
 }

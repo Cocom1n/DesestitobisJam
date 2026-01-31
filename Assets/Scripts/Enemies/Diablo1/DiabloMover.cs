@@ -16,7 +16,6 @@ public class DiabloMover : MonoBehaviour
 
     public void InitPatrulla()
     {
-        // Inicia el patrullaje cuando el enemigo es instanciado
         patrullando = true;
     }
     public void DetenerPatrullaje()
@@ -43,12 +42,7 @@ public class DiabloMover : MonoBehaviour
         _dir.Normalize();
         _dest += CalcularBaile(_dir);
 
-        Vector3 _nuevaPos = Vector3.MoveTowards(
-            _pos,
-            _dest,
-            velocidad * Time.deltaTime
-        );
-
+        Vector3 _nuevaPos = Vector3.MoveTowards(_pos, _dest, velocidad * Time.deltaTime);
         transform.position = _nuevaPos;
         return _dir;
     }
@@ -58,13 +52,15 @@ public class DiabloMover : MonoBehaviour
         return Vector3.Cross(direccion, Vector3.up) *
                (Mathf.Sin(tiempoBaile) * amplitud);
     }
-    void Update()
-    {
-        Patrullar();
-    }
     public void SetPuntosPatrulla(Transform[] nuevosPuntos)
     {
-        puntosPatrulla = nuevosPuntos; // Asignamos los puntos que recibimos desde el spawner
+        puntosPatrulla = nuevosPuntos;
+    }
+
+    public void Matar()
+    {
+        var diabloIA = GetComponent<DiabloIA>();
+        diabloIA.MatarDiablo();
     }
 
 }
