@@ -8,13 +8,13 @@ public class DiabloFila : MonoBehaviour
     public float limiteInferior = -3f;
     public float limiteSuperior = 3f;
     
-    private int direccionHorizontal = 1; // 1 = Derecha, -1 = Izquierda
-    private int direccionVertical = -1;  // -1 baja, 1 sube
+    private int direccionZ = 1; // 1 = Derecha, -1 = Izquierda
+    private int direccionX = 1;  // -1 baja, 1 sube
 
     void Update()
     {
         //transform.Translate(Vector3.right * direccionHorizontal * velocidad * Time.deltaTime);
-        transform.Translate(Vector3.right * direccionHorizontal * velocidad * Time.deltaTime, Space.World);
+        transform.Translate(Vector3.forward * direccionZ * velocidad * Time.deltaTime, Space.World);
         AjustarRotacion();
     }
     /*void AjustarRotacion()
@@ -30,7 +30,7 @@ public class DiabloFila : MonoBehaviour
     }*/
     void AjustarRotacion()
     {
-        Vector3 direccionDeMovimiento = new Vector3(direccionHorizontal, 0, 0);
+        Vector3 direccionDeMovimiento = new Vector3(0, 0, direccionZ);
 
         if (direccionDeMovimiento != Vector3.zero)
         {
@@ -49,16 +49,16 @@ public class DiabloFila : MonoBehaviour
 
     void CambiarDeNivel()
     {
-        direccionHorizontal *= -1;
-        transform.position += Vector3.forward * direccionVertical * distanciaDescenso;
+        direccionZ *= -1;
+        transform.position += Vector3.right * direccionX * distanciaDescenso;
 
-        if (transform.position.z <= limiteInferior)
+        if (transform.position.x <= limiteInferior)
         {
-            direccionVertical = 1; // Empezar a subir
+            direccionX = 1; // Empezar a subir
         }
-        else if (transform.position.z >= limiteSuperior)
+        else if (transform.position.x >= limiteSuperior)
         {
-            direccionVertical = -1; // Empezar a bajar
+            direccionX = -1; // Empezar a bajar
         }
     }
 }

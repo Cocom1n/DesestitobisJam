@@ -2484,7 +2484,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 658463960678642772}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.747, y: 0, z: 0}
   m_LocalScale: {x: 0.3386363, y: 0.3386363, z: 0.3386363}
   m_ConstrainProportionsScale: 0
@@ -2580,7 +2580,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objetivoASeguir: {fileID: 5409244247609289669}
-  distanciaMinima: 0.5
+  distanciaMinima: 1
   velocidadSuave: 10
   modeloHumano: {fileID: 7180569407073166589}
   modeloDiablo: {fileID: 8358193891486290155}
@@ -4887,7 +4887,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1146412961695801961}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.859, y: 0, z: 0}
   m_LocalScale: {x: 0.3386363, y: 0.3386363, z: 0.3386363}
   m_ConstrainProportionsScale: 0
@@ -4983,7 +4983,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objetivoASeguir: {fileID: 2477493334784131844}
-  distanciaMinima: 0.5
+  distanciaMinima: 1
   velocidadSuave: 10
   modeloHumano: {fileID: 6116516122377359754}
   modeloDiablo: {fileID: 4226542476707145812}
@@ -7406,7 +7406,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1693234441126114252}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 116.01262, y: 116.01262, z: 116.01262}
   m_ConstrainProportionsScale: 0
@@ -10944,7 +10944,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2475017119136546048}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.67, y: 0, z: 0}
   m_LocalScale: {x: 0.3386363, y: 0.3386363, z: 0.3386363}
   m_ConstrainProportionsScale: 0
@@ -26637,7 +26637,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5759092312353407561}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 116.01262, y: 116.01262, z: 116.01262}
   m_ConstrainProportionsScale: 0
@@ -28270,7 +28270,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6116516122377359754}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 116.01262, y: 116.01262, z: 116.01262}
   m_ConstrainProportionsScale: 0
@@ -32278,7 +32278,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6941164747438087317}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.7480001, y: 0, z: 0}
   m_LocalScale: {x: 0.3386363, y: 0.3386363, z: 0.3386363}
   m_ConstrainProportionsScale: 0
@@ -32374,7 +32374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objetivoASeguir: {fileID: 656259461844142672}
-  distanciaMinima: 0.6
+  distanciaMinima: 1
   velocidadSuave: 10
   modeloHumano: {fileID: 5759092312353407561}
   modeloDiablo: {fileID: 3840521897047575932}
@@ -33627,7 +33627,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7180569407073166589}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 116.01262, y: 116.01262, z: 116.01262}
   m_ConstrainProportionsScale: 0
@@ -35713,7 +35713,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7635401314253384322}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.626, y: 0, z: 0}
   m_LocalScale: {x: 0.3386363, y: 0.3386363, z: 0.3386363}
   m_ConstrainProportionsScale: 0
@@ -35809,7 +35809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objetivoASeguir: {fileID: 2642037345726584121}
-  distanciaMinima: 0.5
+  distanciaMinima: 1
   velocidadSuave: 10
   modeloHumano: {fileID: 1693234441126114252}
   modeloDiablo: {fileID: 3244148493401881358}
