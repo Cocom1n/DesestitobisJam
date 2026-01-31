@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 using System.Collections;
 
 public class DisparoBombuchas : MonoBehaviour
@@ -25,9 +27,16 @@ public class DisparoBombuchas : MonoBehaviour
     [SerializeField] private float tiempoRecarga = 10f;
     public bool PuedeDisparar => !estaRecargando && municionActual > 0;
 
+    //cositas para la ui
+    [SerializeField] private Image imagenBombucha;
+    [SerializeField] private TextMeshProUGUI textoMunicion;
+    private Color colorNormal = Color.white;
+    private Color colorRecargando = new Color(1f, 1f, 1f, 0.3f);
+
     void Start()
     {
         municionActual = maxMunicion;
+        ActualizarUI();
     }
     void Update()
     {
@@ -67,6 +76,7 @@ public class DisparoBombuchas : MonoBehaviour
                     b.Lanzar(puntoDisparo.position, direccionFinal * fuerzaLanzamiento);
 
                     municionActual--;
+                    ActualizarUI();
 
                     if (municionActual <= 0)
                     {
@@ -95,11 +105,57 @@ public class DisparoBombuchas : MonoBehaviour
     IEnumerator Recargar()
     {
         estaRecargando = true;
+        
+        if (imagenBombucha != null)
+        {
+            //imagenBombucha.color = colorRecargando;
+            imagenBombucha.fillAmount = 0f;
+        }
+        
+        if (textoMunicion != null)
+        {
+            textoMunicion.text = "0";
+        }
 
-        yield return new WaitForSeconds(tiempoRecarga);
+        float tiempoTranscurrido = 0f;
+        
+        while (tiempoTranscurrido < tiempoRecarga)
+        {
+            tiempoTranscurrido += Time.deltaTime;
+            float progreso = tiempoTranscurrido / tiempoRecarga;
+            
+            if (imagenBombucha != null)
+            {
+                imagenBombucha.fillAmount = progreso;
+            }
+            
+            yield return null;
+        }
 
         municionActual = maxMunicion;
         estaRecargando = false;
+        
+        if (imagenBombucha != null)
+        {
+            imagenBombucha.fillAmount = 1f;
+            imagenBombucha.color = colorNormal;
+        }
+        
+        ActualizarUI();
+    }
+
+    private void ActualizarUI()
+    {
+        if (textoMunicion != null)
+        {
+            textoMunicion.text = municionActual.ToString();
+        }
+
+        if (imagenBombucha != null && !estaRecargando)
+        {
+            imagenBombucha.fillAmount = 1f;
+            imagenBombucha.color = colorNormal;
+        }
     }
 
 }
