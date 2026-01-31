@@ -30,7 +30,7 @@ public class InteractorJugador : MonoBehaviour, IAgarraObjetos, IReceptorInterac
     private EffectController effectController;
 
     private readonly Collider[] _bufferColisionadores = new Collider[5];
-    private readonly HashSet<GameObject> _procesados;
+    private readonly HashSet<GameObject> _procesados = new HashSet<GameObject>();
 
     /** IAgarraObjetos: Indica si alguno de los sockets esta ocupado */
     public bool TieneObjeto

@@ -2,14 +2,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-/** Clase que maneja el temporizador de los efectos */
 // NO TOCAR EL ****** backgroundImage ******
+
+/** Clase que maneja el temporizador de los efectos */
 public class EffectTimer : MonoBehaviour
 {
     [Header("Elementos UI")]
     public Image imgCenter;
     public Slider timerSlider;
-    private float effectTimeRemaining;       // Tiempo restante del efecto
+    private float effectTimeRemaining;
     private MaskData maskData;
 
     //private Image bachground;
@@ -19,7 +20,7 @@ public class EffectTimer : MonoBehaviour
     {
         this.maskData = maskData;
         effectTimeRemaining = maskData.lifetime;
-        timerSlider.gameObject.SetActive(true);   // Activamos el slider cuando comienza el efecto
+        timerSlider.gameObject.SetActive(true);   // Activamos el slider
         timerSlider.value = 0f;
 
         //bachground = timerSlider.transform.GetChild(0).GetComponent<Image>();
@@ -42,7 +43,7 @@ public class EffectTimer : MonoBehaviour
 
             yield return null;
         }
-
+        yield return new WaitForSeconds(0.8f);
         timerSlider.gameObject.SetActive(false);  // Desactivamos el slider cuando el efecto haya terminado
     }
 

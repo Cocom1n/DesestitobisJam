@@ -22,6 +22,3 @@ MonoBehaviour:
   - effect: {fileID: 11400000, guid: 66efc5dca0a08514991bf9020c95b47e, type: 2}
     value: 2
     isPermanent: 1
-  - effect: {fileID: 11400000, guid: 950b74d921333454d8f2f483b17591b4, type: 2}
-    value: 2
-    isPermanent: 0

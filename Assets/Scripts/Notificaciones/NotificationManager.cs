@@ -1,21 +1,24 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
-using System.Linq;
 
+/** Clase que maneja la visualizacion de la informacion de la mascara y coordina las animaciones */
 public class NotificationManager : MonoBehaviour
 {
     [Header("Elementos UI")]
-    public TextMeshProUGUI maskNameText;    // Para mostrar el nombre de la mask
-    public TextMeshProUGUI effectsText;     // Para mostrar los efectos de la mask
-    public TextMeshProUGUI descriptionText; // Para mostrar la descripción de la mask
+    public TextMeshProUGUI maskNameText;      // Texto que muestra el nombre de la mascara
+    public TextMeshProUGUI effectsText;       // Texto que muestra los efectos de la mascara
+    public EffectTimer effectTimer;           // Temporizador de efectos
 
-    private Coroutine notificationCoroutine;
-    public EffectTimer effectTimer;
+    [Header("Animadores")]
+    public AnimacionesUI animator;            // Animaciones de UI (texto y PowerUp)
 
-    // Implementación de patrón singleton para fácil acceso
-    public static NotificationManager Instance { get; private set; }
+    private Coroutine notificationCoroutine;   // Corutina para mostrar la notificacion
+    private Coroutine powerUpCoroutine;        // Corutina para animar el PowerUp
 
+    public static NotificationManager Instance { get; private set; }  
+
+    /** Metodo que inicializa la instancia de NotificationManager */
     private void Awake()
     {
         if (Instance == null)
@@ -24,50 +27,63 @@ public class NotificationManager : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject); // Si ya existe una instancia, destruimos la nueva 
+            Destroy(gameObject);
         }
-
     }
 
+    /** Metodo que muestra la informacion de la mascara y coordina las animaciones de la notificacion y PowerUp. */
     public void ShowMaskInfo(MaskData maskData)
     {
+        // Detenemos cualquier animacion en curso
         if (notificationCoroutine != null)
         {
             StopCoroutine(notificationCoroutine);
+            notificationCoroutine = null;
         }
 
-        // Iniciar una nueva corutina para mostrar la notificacion
+        if (powerUpCoroutine != null)
+        {
+            StopCoroutine(powerUpCoroutine);
+            powerUpCoroutine = null;
+        }
+
         notificationCoroutine = StartCoroutine(DisplayNotification(maskData));
+        powerUpCoroutine = StartCoroutine(DisplayPowerUp(maskData));
     }
 
+    /** Corutina que maneja la visualizacion de la notificacion. Muestra el nombre de la mascara y los efectos con animaciones. */
     private IEnumerator DisplayNotification(MaskData maskData)
     {
-        // Mostrar nombre y descripción
-        maskNameText.text = maskData.maskName;
-        descriptionText.text = "Descripcion: " + (maskData.name ?? "No disponible");
+        maskNameText.text = maskData.maskName;  
+        effectsText.text = "Efectos:";          
 
-        // Mostrar los efectos
-        effectsText.text = "Efectos:";
-        foreach (var effectData in maskData.effects)
+        if (maskData.effects != null)
         {
-            effectsText.text += $"\n- {effectData.effect.name} ( : {effectData.value})";
+            foreach (var e in maskData.effects)
+                effectsText.text += $"\n- {e.effect.name} : {e.value}"; // Mostramos los efectos de la mascara
         }
 
+        // Animar el texto (nombre y efectos)
+        float waitTime = Mathf.Max(
+            animator.AnimarTextoNombre(maskNameText),
+            animator.AnimarTextoNombre(effectsText)
+        );
+        // Iniciar el temporizador de efectos visuales
+        effectTimer?.StartEffectTimer(maskData);
 
-        // Hacer visible la UI de la notificación
-        maskNameText.gameObject.SetActive(true);
-        effectsText.gameObject.SetActive(true);
-        descriptionText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSeconds(maskData.lifetime - waitTime);
 
-        effectTimer.StartEffectTimer(maskData);
+        notificationCoroutine = null;  // Reseteamos la corutina de notificacion
+    }
 
+    /** Corutina que maneja la visualizacion del PowerUp. Muestra la animacion de entrada y salida del PowerUp. */
+    private IEnumerator DisplayPowerUp(MaskData maskData)
+    {
+        animator?.AnimarPowerUIEntrada();
+        yield return new WaitForSeconds(maskData.lifetime);
+        animator?.AnimarPowerUISalida();
 
-        // Esperar un tiempo antes de ocultar la notificación
-        yield return new WaitForSeconds(3f); // Duración de la notificación en pantalla
-
-        // Ocultar la UI después de la espera
-        maskNameText.gameObject.SetActive(false);
-        effectsText.gameObject.SetActive(false);
-        descriptionText.gameObject.SetActive(false);
+        powerUpCoroutine = null;  // Reseteamos la corutina del PowerUp
     }
 }
