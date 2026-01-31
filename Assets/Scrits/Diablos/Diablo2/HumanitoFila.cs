@@ -16,7 +16,7 @@ public class HumanitoFila : MonoBehaviour
         {
             historialPosiciones.Add(objetivoASeguir.position);
 
-            if (Vector3.Distance(transform.position, objetivoASeguir.position) > distanciaMinima)
+            /*if (Vector3.Distance(transform.position, objetivoASeguir.position) > distanciaMinima)
             {
                 Vector3 puntoDestino = historialPosiciones[0];
 
@@ -29,6 +29,21 @@ public class HumanitoFila : MonoBehaviour
 
                 //transform.position = Vector3.Lerp(transform.position, historialPosiciones[0], Time.deltaTime * velocidadSuave);
                 transform.position = Vector3.Lerp(transform.position, puntoDestino, Time.deltaTime * velocidadSuave);
+                historialPosiciones.RemoveAt(0);
+            }*/
+
+            if(historialPosiciones.Count >20)
+            {
+                Vector3 puntoDestino = historialPosiciones[0];
+
+                transform.position = Vector3.Lerp(transform.position, puntoDestino, Time.deltaTime * velocidadSuave);
+
+                Vector3 direccion = (puntoDestino - transform.position).normalized;
+                if(direccion != Vector3.zero)
+                {
+                    Quaternion rotacionDestino = Quaternion.LookRotation(direccion);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, rotacionDestino, Time.deltaTime * velocidadSuave);
+                }
                 historialPosiciones.RemoveAt(0);
             }
         }

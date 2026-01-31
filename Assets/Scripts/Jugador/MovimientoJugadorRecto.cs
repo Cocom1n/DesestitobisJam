@@ -20,7 +20,7 @@ public class MovimientoJugadorRecto : MonoBehaviour
     {
         // El movimiento es relativo al mundo
         // input.y (W/S) mueve en Z, input.x (A/D) mueve en X
-        Vector3 direccion = new Vector3(input.x, 0, input.y);
+        Vector3 direccion = new Vector3(input.y, 0, input.x*-1);
         
         /** Usar el stat topSpeed del jugador */
         float velocidadActual = stats != null ? stats.GetTopSpeed() : 5f;
