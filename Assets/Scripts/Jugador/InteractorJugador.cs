@@ -20,7 +20,7 @@ public class InteractorJugador : MonoBehaviour, IAgarraObjetos, IReceptorInterac
     [SerializeField] private LayerMask capaRecolectables;
 
     [Header("Coleccion de Sockets")]
-    [SerializeField] private List<SocketInfo> sockets;
+    [SerializeField] private List<SocketInfo> sockets = new List<SocketInfo>();
 
     [Header("Configuracion de Desprendimiento")]
     [SerializeField] private float fuerzaImpactoMin = 2f;
@@ -33,14 +33,7 @@ public class InteractorJugador : MonoBehaviour, IAgarraObjetos, IReceptorInterac
     private readonly HashSet<GameObject> _procesados = new HashSet<GameObject>();
 
     /** IAgarraObjetos: Indica si alguno de los sockets esta ocupado */
-    public bool TieneObjeto
-    {
-        get
-        {
-            foreach (var s in sockets) if (s.ocupante != null) return true;
-            return false;
-        }
-    }
+    public bool TieneObjeto => sockets.Exists(s => s.ocupante != null);
 
     private void Awake()
     {
@@ -102,31 +95,32 @@ public class InteractorJugador : MonoBehaviour, IAgarraObjetos, IReceptorInterac
 
     public void SoltarPrioridad()
     {
-        /** Buscamos soltar primero la mascara (Cabeza) para limpiar efectos */
-        foreach (var s in sockets)
+        SocketInfo victima = ObtenerSocketOcupado("Cabeza");
+        if (victima != null)
         {
-            if (s.nombre == "Cabeza" && s.ocupante != null)
-            {
-                if (effectController != null)
-                {
-                    effectController.RemoveMaskEffects();
-                }
-                s.ocupante.Soltar();
-                s.ocupante = null;
-                return;
-            }
+            effectController?.RemoveMaskEffects();
+            SoltarObjeto(victima);
+            return;
         }
 
-        /** Si no hay mascara, soltamos el primer objeto encontrado */
-        foreach (var s in sockets)
+        victima = ObtenerSocketOcupado("Mano");
+        if (victima != null)
         {
-            if (s.nombre == "Mano" && s.ocupante != null)
-            {
-                //s.ocupante.Soltar();
-                //s.ocupante = null;
-                Debug.Log("No se puede soltar el OBJ de la mano");
-                return;
-            }
+            Debug.Log("No se puede soltar el OBJ de la mano");
+        }
+    }
+
+    private void SoltarObjeto(SocketInfo socket)
+    {
+        GameObject go = socket.ocupante.ObtenerGameObject();
+        socket.ocupante.Soltar();
+        socket.ocupante = null;
+
+        if (go != null && go.TryGetComponent(out Rigidbody rb))
+        {
+            Vector3 dir = (Vector3.up + Random.insideUnitSphere * 0.5f).normalized;
+            rb.AddForce(dir * Random.Range(fuerzaImpactoMin, fuerzaImpactoMax), ForceMode.Impulse);
+            rb.AddTorque(Random.insideUnitSphere * torqueImpacto, ForceMode.Impulse);
         }
     }
 
@@ -145,22 +139,21 @@ public class InteractorJugador : MonoBehaviour, IAgarraObjetos, IReceptorInterac
 
         if (victima == null) return;
 
-        if (victima.nombre == "Cabeza" && effectController != null)
+        if (victima.nombre == "Cabeza") effectController?.RemoveMaskEffects();
+        SoltarObjeto(victima);
+    }
+    /** Metodo para soltar todos los objetos que tiene el jugador */
+    public void PerderTodosLosObjetos()
+    {
+        foreach (var s in sockets)
         {
-            effectController.RemoveMaskEffects();
-        }
-
-        GameObject go = victima.ocupante.ObtenerGameObject();
-        victima.ocupante.Soltar();
-        victima.ocupante = null;
-
-        if (go != null && go.TryGetComponent(out Rigidbody rb))
-        {
-            Vector3 dir = (Vector3.up + Random.insideUnitSphere * 0.5f).normalized;
-            rb.AddForce(dir * Random.Range(fuerzaImpactoMin, fuerzaImpactoMax), ForceMode.Impulse);
-            rb.AddTorque(Random.insideUnitSphere * torqueImpacto, ForceMode.Impulse);
+            if (s.ocupante != null)
+            {
+                SoltarObjeto(s);
+            }
         }
     }
+
 
     public GameObject ObtenerObjetoSostenido()
     {
@@ -169,6 +162,10 @@ public class InteractorJugador : MonoBehaviour, IAgarraObjetos, IReceptorInterac
     }
 
     public Transform ObtenerPuntoMano() => ObtenerSocket("Mano");
+    private SocketInfo ObtenerSocketOcupado(string nombre)
+    {
+        return sockets.Find(s => s.ocupante != null && s.nombre == nombre);
+    }
 
     private void CalcularCapsula(out Vector3 b, out Vector3 s)
     {
