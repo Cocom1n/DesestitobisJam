@@ -18,7 +18,7 @@ public class EstadoReaparicion : EstadoDiablo
     private IEnumerator ReaparecerYPatrullar()
     {
         Reaparecer();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(tiempoEspera);
         cerebro.CambiarEstado(cerebro.EstadoPatrulla);
     }
 

@@ -5,11 +5,11 @@ using System.Collections;
 public class Spawn : MonoBehaviour
 {
     [Header("Configuración de Spawn")]
-    public GameObject diabloPrefab;
-    public Transform[] puntosSpawn;
+    [SerializeField] private GameObject diabloPrefab;
+    [SerializeField] private ZonaSpawnEnemi1[] zonas;
 
     [Header("Configuración de Enemigos")]
-    public int maxEnemigos = 3;
+    [SerializeField] private int maxEnemigos = 3;
     private int enemigosActivos = 0;
 
     /******* METODOS *******/
@@ -24,13 +24,17 @@ public class Spawn : MonoBehaviour
     {
         while (enemigosActivos < maxEnemigos)
         {
-            Transform spawnPoint = puntosSpawn[Random.Range(0, puntosSpawn.Length)];
+            // Zona aleatoria
+            ZonaSpawnEnemi1 zona = zonas[Random.Range(0, zonas.Length)];
+            // Seleccionamos un punto de spawn aleatorio de la zona seleccionada
+            Transform spawnPoint = zona.GetPuntosSpawn()[Random.Range(0, zona.GetPuntosSpawn().Length)];
+
             GameObject nuevoDiablo = Instantiate(diabloPrefab, spawnPoint.position, Quaternion.identity);
             DiabloIA diabloIA = nuevoDiablo.GetComponent<DiabloIA>();
 
             if (diabloIA != null)
             {
-                diabloIA.AsignarPuntosDePatrullaje(puntosSpawn);
+                diabloIA.AsignarPuntosDePatrullaje(zona.GetPuntosPatrullaje());
                 diabloIA.Reaparecer();  // SI NO ENTIENDES NO LO QUITES D": 
             }
 
