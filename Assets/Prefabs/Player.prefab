@@ -239,7 +239,7 @@ GameObject:
   m_Layer: 0
   m_Name: MANOOO
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -330,6 +330,7 @@ GameObject:
   - component: {fileID: 1957873730143639745}
   - component: {fileID: 5145079710368733046}
   - component: {fileID: 2838986721968171173}
+  - component: {fileID: 3495700300897045600}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -564,7 +565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f11d737f67b34e842bfb30077a0cf0c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 0}
+  stats: {fileID: 1957873730143639745}
   camara: {fileID: 0}
 --- !u!114 &847685702852192864
 MonoBehaviour:
@@ -684,6 +685,8 @@ MonoBehaviour:
   rendererFlecha: {fileID: 6404798689818625138}
   maxMunicion: 3
   tiempoRecarga: 10
+  imagenBombucha: {fileID: 0}
+  textoMunicion: {fileID: 0}
 --- !u!114 &2838986721968171173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -702,3 +705,15 @@ MonoBehaviour:
   capaSuelo:
     serializedVersion: 2
     m_Bits: 1
+--- !u!114 &3495700300897045600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5070629542052640438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 774e24f789c9dbe428f6d2f4d0d92f1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

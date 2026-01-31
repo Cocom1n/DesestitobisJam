@@ -21,4 +21,4 @@ MonoBehaviour:
     isPermanent: 0
   - effect: {fileID: 11400000, guid: 66efc5dca0a08514991bf9020c95b47e, type: 2}
     value: 2
-    isPermanent: 1
+    isPermanent: 0
