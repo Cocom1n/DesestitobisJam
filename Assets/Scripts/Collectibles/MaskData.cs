@@ -23,7 +23,7 @@ public class MaskData : ScriptableObject
 public class MaskEffectData
 {
     /** Referencia al efecto base (SO) */
-    public EffectBase effect;
+    public TimedEffectBase effect;
 
     /** Valor del efecto */
     public float value;
