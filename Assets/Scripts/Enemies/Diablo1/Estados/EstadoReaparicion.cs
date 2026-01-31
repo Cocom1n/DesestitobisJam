@@ -4,12 +4,17 @@ using System.Collections;
 /** Estado donde el Diablo reaparece en una posicion aleatoria */
 public class EstadoReaparicion : EstadoDiablo
 {
-    private float tiempoEspera = 2f; 
+    private float tiempoEspera = 2f;
+
+    /******* METODOS *******/
+
+    /** Metodo que se ejecuta al entrar al estado, inicia la corrutina de reaparecer y patrullar */
     public override void Entrar()
     {
         cerebro.StartCoroutine(ReaparecerYPatrullar());
     }
 
+    /** Metodo que gestiona el proceso de reaparecer y luego cambia al estado de patrulla */
     private IEnumerator ReaparecerYPatrullar()
     {
         Reaparecer();
@@ -17,9 +22,9 @@ public class EstadoReaparicion : EstadoDiablo
         cerebro.CambiarEstado(cerebro.EstadoPatrulla);
     }
 
+    /** Metodo que hace que el Diablo reaparezca en una posicion aleatoria dentro de los puntos de patrullaje */
     private void Reaparecer()
     {
-        // Lógica para que el Diablo reaparezca en una posición aleatoria dentro de los puntos de patrullaje
         Transform[] puntosPatrulla = cerebro.Movimiento.GetPuntosPatrulla();
         if (puntosPatrulla.Length > 0)
         {
@@ -28,8 +33,9 @@ public class EstadoReaparicion : EstadoDiablo
         }
     }
 
+    /** Metodo que se ejecuta al salir del estado, aunque actualmente no hace nada */
     public override void Salir()
     {
-        //cerebro.Movimiento.InitPatrulla();
+        // cerebro.Movimiento.InitPatrulla(); 
     }
 }

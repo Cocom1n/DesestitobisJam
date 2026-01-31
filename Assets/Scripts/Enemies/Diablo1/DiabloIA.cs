@@ -29,9 +29,8 @@ public class DiabloIA : MonoBehaviour
         EstadoAtaque.Inicializar(this);
         EstadoMuerte.Inicializar(this);
         EstadoReaparicion.Inicializar(this);
-        //estadoActual = EstadoPatrulla;
-        //CambiarEstado(EstadoReaparicion);
     }
+
     public void CambiarEstado(EstadoDiablo nuevoEstado)
     {
         if (estadoActual != null)
@@ -65,6 +64,7 @@ public class DiabloIA : MonoBehaviour
         PuntoManoObjetivo = null;
         return false;
     }
+
     /** Método que es llamado cuando el Diablo muere */
     public void Matar()
     {

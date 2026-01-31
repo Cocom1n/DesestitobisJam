@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections;
 
-public class EnemySpawner : MonoBehaviour
+/** Clase encargada de gestionar el spawn de enemigos */
+public class Spawn : MonoBehaviour
 {
     [Header("Configuración de Spawn")]
     public GameObject diabloPrefab;
@@ -11,32 +12,26 @@ public class EnemySpawner : MonoBehaviour
     public int maxEnemigos = 3;
     private int enemigosActivos = 0;
 
+    /******* METODOS *******/
+
     void Start()
     {
         StartCoroutine(SpawnEnemies());
     }
 
+    /** Metodo que gestiona el spawn de enemigos en el escenario */
     private IEnumerator SpawnEnemies()
     {
         while (enemigosActivos < maxEnemigos)
         {
-            // Elige una posición aleatoria de los puntos de spawn disponibles
             Transform spawnPoint = puntosSpawn[Random.Range(0, puntosSpawn.Length)];
-
-            // Instanciamos un nuevo Diablo
             GameObject nuevoDiablo = Instantiate(diabloPrefab, spawnPoint.position, Quaternion.identity);
-
-            // Obtenemos el script DiabloIA para poder configurarlo
             DiabloIA diabloIA = nuevoDiablo.GetComponent<DiabloIA>();
 
             if (diabloIA != null)
             {
-                // Asignar los puntos de patrullaje
                 diabloIA.AsignarPuntosDePatrullaje(puntosSpawn);
-
-                // Cambiar el estado a Reaparición
-                diabloIA.Reaparecer();
-                Debug.Log("Puntos de patrullaje asignados y Diablo en estado de reaparición.");
+                diabloIA.Reaparecer();  // SI NO ENTIENDES NO LO QUITES D": 
             }
 
             enemigosActivos++;
@@ -44,8 +39,25 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    /** Metodo para eliminar un enemigo, decrementando el contador de enemigos activos */
     public void EliminarEnemigo()
     {
         enemigosActivos--;
+    }
+
+    /******* GETTERS *******/
+
+    /** Getter para obtener la cantidad maxima de enemigos */
+    public int MaxEnemigos
+    {
+        get { return maxEnemigos; }
+    }
+
+    /******* SETTERS *******/
+
+    /** Setter para modificar la cantidad maxima de enemigos */
+    public void SetMaxEnemigos(int max)
+    {
+        maxEnemigos = max;
     }
 }
