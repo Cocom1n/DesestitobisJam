@@ -24,7 +24,7 @@ public class Spawn : MonoBehaviour
     {
         while (enemigosActivos < maxEnemigos)
         {
-            // Zona aleatoria
+            // Seleccionamos una Zona aleatoria
             ZonaSpawnEnemi1 zona = zonas[Random.Range(0, zonas.Length)];
             // Seleccionamos un punto de spawn aleatorio de la zona seleccionada
             Transform spawnPoint = zona.GetPuntosSpawn()[Random.Range(0, zona.GetPuntosSpawn().Length)];
