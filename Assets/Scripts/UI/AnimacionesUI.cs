@@ -17,6 +17,15 @@ public class AnimacionesUI : MonoBehaviour
         return 0.6f;
     }
 
+    public float AnimarTextoSalidaPop(TextMeshProUGUI texto)
+    {
+        float duration = 0.5f;
+        LeanTween.scale(powerUI, Vector3.zero, duration)
+            .setEaseInBack();
+
+        return duration;
+    }
+
     /** Animacion de deslizamiento para el nombre del texto */
     public float AnimarTextoNombre(TextMeshProUGUI texto)
     {
@@ -25,12 +34,12 @@ public class AnimacionesUI : MonoBehaviour
 
         // Movimiento hacia el centro con duracion ajustada
         float moveDuration = 1f;
-        LeanTween.moveX(rt, 0f, moveDuration)
+        LeanTween.moveX(rt, -40f, moveDuration)
             .setFrom(1200f)
             .setEaseOutBack();
 
         // Movimiento hacia la izquierda con tiempo de espera
-        float delayTime = 2.5f;
+        float delayTime = 3f;
         LeanTween.moveX(rt, -1200f, moveDuration)
             .setDelay(delayTime)
             .setEaseInOutBack();
@@ -39,7 +48,7 @@ public class AnimacionesUI : MonoBehaviour
     }
 
     /** Animacion para la entrada del PowerUp */
-    public float AnimarPowerUIEntrada()
+    public float AnimarPowerUIEntradaIZQ()
     {
         if (powerUI == null) return 0f;
 
@@ -58,7 +67,37 @@ public class AnimacionesUI : MonoBehaviour
     }
 
     /** Animacion para la salida del PowerUp */
-    public float AnimarPowerUISalida()
+    public float AnimarPowerUISalidaIZQ()
+    {
+        if (powerUI == null) return 0f;
+
+        float duration = 0.5f;
+        LeanTween.scale(powerUI, Vector3.zero, duration)
+            .setEaseInBack();
+
+        return duration;
+    }
+
+    public float AnimarPowerUIEntradaDER()
+    {
+        if (powerUI == null) return 0f;
+
+        float duration = 0.8f;
+
+        powerUI.transform.localScale = Vector3.one * 0.3f;
+
+        LeanTween.moveLocalX(powerUI, powerUI.transform.localPosition.x, duration)
+            .setFrom(powerUI.transform.localPosition.x + 300f)
+            .setEaseOutCubic();
+
+        LeanTween.scale(powerUI, Vector3.one, duration)
+            .setEaseOutBack();
+
+        return duration;
+    }
+
+    /** Animacion para la salida del PowerUp */
+    public float AnimarPowerUISalidaDER()
     {
         if (powerUI == null) return 0f;
 

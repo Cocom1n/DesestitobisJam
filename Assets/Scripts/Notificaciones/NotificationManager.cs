@@ -47,6 +47,10 @@ public class NotificationManager : MonoBehaviour
             powerUpCoroutine = null;
         }
 
+        maskNameText.gameObject.SetActive(true);
+        effectsText.gameObject.SetActive(true);
+        effectTimer.gameObject.SetActive(true);
+
         notificationCoroutine = StartCoroutine(DisplayNotification(maskData));
         powerUpCoroutine = StartCoroutine(DisplayPowerUp(maskData));
     }
@@ -80,9 +84,9 @@ public class NotificationManager : MonoBehaviour
     /** Corutina que maneja la visualizacion del PowerUp. Muestra la animacion de entrada y salida del PowerUp. */
     private IEnumerator DisplayPowerUp(MaskData maskData)
     {
-        animator?.AnimarPowerUIEntrada();
+        animator.AnimarPowerUIEntradaDER();
         yield return new WaitForSeconds(maskData.lifetime);
-        animator?.AnimarPowerUISalida();
+        animator.AnimarPowerUISalidaDER();
 
         powerUpCoroutine = null;  // Reseteamos la corutina del PowerUp
     }

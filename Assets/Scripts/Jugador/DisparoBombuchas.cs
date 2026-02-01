@@ -14,12 +14,7 @@ public class DisparoBombuchas : MonoBehaviour
 
     [SerializeField] private Bombucha[] poolDeBombuchas;
     [SerializeField] private Renderer rendererFlecha;
-    private Color[] coloresIntensos = {
-        Color.green,
-        Color.yellow,
-        Color.red,    
-        Color.blue   
-    };
+    [SerializeField] private Color[] coloresPosibles;
 
     [SerializeField] private int maxMunicion = 3;
     private int municionActual;
@@ -79,12 +74,14 @@ public class DisparoBombuchas : MonoBehaviour
             {
                 rb.AddForce(direccionFinal * fuerzaLanzamiento, ForceMode.Impulse);
             }*/
+            Color colorFlechaAntesDeCambiar = rendererFlecha.material.color;
             CambiarColorFlecha();
 
             foreach (Bombucha b in poolDeBombuchas)
             {
                 if (!b.gameObject.activeInHierarchy)
                 {
+                    b.AsignarColor(colorFlechaAntesDeCambiar);
                     b.Lanzar(puntoDisparo.position, direccionFinal * fuerzaLanzamiento);
 
                     municionActual--;
@@ -127,8 +124,8 @@ public class DisparoBombuchas : MonoBehaviour
     {
         if (rendererFlecha == null) return;
 
-        int indiceAleatorio = Random.Range(0, coloresIntensos.Length);
-        Color colorElegido = coloresIntensos[indiceAleatorio];
+        int indiceAleatorio = Random.Range(0, coloresPosibles.Length);
+        Color colorElegido = coloresPosibles[indiceAleatorio];
 
         rendererFlecha.material.color = colorElegido;
     }

@@ -3,9 +3,16 @@ using UnityEngine;
 public class Bombucha : MonoBehaviour
 {
     private Rigidbody rb;
-    private void Awake() => rb = GetComponent<Rigidbody>();
+    private Renderer rend;
+
     [SerializeField] private int danio = 5;
     [SerializeField] private AudioClip sonidoExplosion;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+        rend = GetComponent<Renderer>();
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -25,7 +32,7 @@ public class Bombucha : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         rb.AddForce(fuerza, ForceMode.Impulse);
-        
+
         Invoke(nameof(SonidoSinInpacto),1.9f);
         Invoke(nameof(Desactivar), 2f);
         
@@ -39,5 +46,9 @@ public class Bombucha : MonoBehaviour
     private void SonidoSinInpacto()
     {
         AudioSource.PlayClipAtPoint(sonidoExplosion, transform.position);
+    }
+    public void AsignarColor(Color colorElegido)
+    {
+            rend.material.color = colorElegido;
     }
 }

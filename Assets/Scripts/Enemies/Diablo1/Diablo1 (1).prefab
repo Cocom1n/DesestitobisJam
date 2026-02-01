@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9141179284084297303}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:R_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7454818804206302049}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:Spine2_Ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   m_Component:
   - component: {fileID: 741286872942838146}
   - component: {fileID: 6751636468171937594}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: frente
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,7 +211,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8573300950471523007}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:Spine2_Ctrl_sets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,7 +243,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2417506900358214034}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:L_Leg_PV_extra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,7 +275,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8937961727930720664}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:R_Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -308,7 +308,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3368861065032697934}
   - component: {fileID: 6203574748773873180}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: vision (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -360,7 +360,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4380921174135390355}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:L_Hand_Ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -391,7 +391,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 832029299467158043}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:Hips_Ctrl_sets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -424,7 +424,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6959512057916895342}
   - component: {fileID: 8483189677327183723}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: vision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -476,7 +476,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7695790268199436455}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:L_Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -508,7 +508,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4355597212013955750}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:L_Eye_Ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -539,7 +539,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6617455391420161512}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:R_Arm_Ctrl_offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -571,7 +571,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3748491092141329484}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:L_Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -603,7 +603,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1001889812348141347}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:Hips_Ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -635,7 +635,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4405438871582500817}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:R_Elbow_Ctrl_offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -671,7 +671,7 @@ GameObject:
   - component: {fileID: 6137398926954111212}
   - component: {fileID: 8468010581634635548}
   - component: {fileID: 3385856779648239001}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -789,7 +789,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1159286845821624128}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:Neck_Ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -822,7 +822,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 935620912759472070}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:R_Eye_End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -853,7 +853,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7190289581695077184}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:L_Leg_PV_sets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -885,7 +885,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5100228967408317844}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:L_Hand_Ctrl_offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -917,7 +917,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8979151262543555602}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:L_Leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -949,7 +949,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7097600692020568324}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:L_Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -980,7 +980,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1429477086900446477}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:L_Eye_Ctrl_sets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1013,7 +1013,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2188239878803925450}
   - component: {fileID: 7035542790750953542}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TirarCola_AUX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1070,7 +1070,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5154340796222310005}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:ikHandle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1101,7 +1101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3551675010962105037}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:Chest_Ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1135,7 +1135,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1702467083650958567}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:R_Eye_Ctrl_extra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1167,7 +1167,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9152523046932276905}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:L_Arm_Ctrl_extra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1199,7 +1199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1800141483714274629}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1231,7 +1231,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2707076477988162195}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:R_Arm_Ctrl_extra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1263,7 +1263,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6550870937564414502}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:L_Elbow_Ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1295,7 +1295,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3100705122277716752}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:R_Hand_Ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1339,9 +1339,9 @@ GameObject:
   - component: {fileID: 800288249092224472}
   - component: {fileID: 7329527159043800127}
   - component: {fileID: 1994503258346829116}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Diablo1 (1)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1602,7 +1602,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4954331834616053793}
   - component: {fileID: 6856770695929337281}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:cuernos_B_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1690,7 +1690,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5723371363996535089}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:L_Arm_Ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1722,7 +1722,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6977519590308041989}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:L_Diablo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1756,7 +1756,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1359705802918098306}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:R_Elbow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1788,7 +1788,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5285162223891580843}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:R_Elbow_Ctrl_sets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1820,7 +1820,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4611006823691511285}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:Chest_Ctrl_offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1852,7 +1852,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8566274700593926383}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:R_Ancle_Ctrl_extra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1884,7 +1884,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5723231833117040015}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:R_Arm_Ctrl_sets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1916,7 +1916,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7011125103276072542}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PuntoDisparo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1947,7 +1947,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7728093791002970635}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:L_Ancle_Ctrl_offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1979,7 +1979,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4616433363021528624}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2013,7 +2013,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8662021597966486601}
   - component: {fileID: 5380804740137818063}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:ojos_B_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2104,7 +2104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4755018346948899243}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:Neck_Ctrl_offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2136,7 +2136,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1703739173547129088}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:R_Eye_Ctrl_sets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2168,7 +2168,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5748548948154827550}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:R_Eye_Ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2199,7 +2199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4980260026567029597}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:L_Arm_Ctrl_sets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2231,7 +2231,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7876000076451817339}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:R_Ancle_Ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2263,7 +2263,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2318734393649108333}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:L_Eye_End
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2294,7 +2294,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 211638400326915671}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:R_Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2326,7 +2326,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1929317116922448594}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2360,7 +2360,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7375714589840464869}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:L_Eye_Ctrl_extra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2392,7 +2392,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 274823489946795970}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:L_Ancle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2423,7 +2423,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7030921689036456694}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:R_Hand_Ctrl_sets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2455,7 +2455,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5728913669815439621}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:L_Ancle_Ctrl_extra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2487,7 +2487,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8015318526223231421}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:Chest_Ctrl_sets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2519,7 +2519,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2892897513113892142}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:R_Ancle_Ctrl_offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2551,7 +2551,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5859971979000157100}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:Spine1_Ctrl_extra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2583,7 +2583,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8158466695043888067}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:R_Leg_PV_extra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2615,7 +2615,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8314641606128477659}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:L_Elbow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2647,7 +2647,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1105338114001466734}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:L_Eye_Ctrl_offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2679,7 +2679,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3930373466680651888}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:Spine2_Ctrl_offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2711,7 +2711,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6932202590100106396}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:Spine1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2743,7 +2743,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5719319284505520406}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:L_Leg_PV_offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2775,7 +2775,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4394421771132507196}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:R_Leg_PV_offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2807,7 +2807,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4774785596376798750}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:R_Ancle_Ctrl_sets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2839,7 +2839,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2198974864736774879}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:R_Elbow_Ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2871,7 +2871,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4964461299376685217}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:diablo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2903,7 +2903,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 993133401028866877}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:Neck_Ctrl_extra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2935,7 +2935,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7230079113839092560}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:CTRLS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2967,7 +2967,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3958493847623496578}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:Main_CTL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2999,7 +2999,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3635848692415507023}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:R_Leg_PV_sets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3031,7 +3031,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 622253218503840492}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:Spine1_Ctrl_sets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3063,7 +3063,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3089347826631011355}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:L_Ancle_Ctrl_sets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3095,7 +3095,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1987573014077948432}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:R_Eye_Ctrl_offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3127,7 +3127,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6925508144127662356}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:Spine1_Ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3160,7 +3160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3141575461707019290}
   - component: {fileID: 1841405002649537470}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:Personaje_B_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3269,7 +3269,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4978336187572405722}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:Constraints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3300,7 +3300,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8125649165124767462}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3334,7 +3334,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4963348779964145941}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:L_Hand_Ctrl_sets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3366,7 +3366,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4784095703632312466}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:R_Elbow_Ctrl_extra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3398,7 +3398,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8260222991599989486}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:R_Knee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3430,7 +3430,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1042007528235977768}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:R_Hand_Ctrl_offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3462,7 +3462,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1775633860404304666}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:L_Knee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3494,7 +3494,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2352539558699520452}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:ikHandle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3525,7 +3525,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4659247900743234731}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:Joints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3557,7 +3557,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5430418815134802615}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:Offset_CTL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3593,7 +3593,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5980522915550958568}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:L_Leg_PV_CTL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3624,7 +3624,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3460565049833742528}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:L_Elbow_Ctrl_offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3656,7 +3656,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8217854123743422076}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:L_Elbow_Ctrl_extra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3688,7 +3688,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1250520292640756147}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:Neck_Ctrl_sets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3720,7 +3720,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5839158340889500931}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:R_Arm_Ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3752,7 +3752,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5245715982087718324}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:L_Elbow_Ctrl_sets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3784,7 +3784,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2675579450190925559}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:Spine2_Ctrl_extra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3816,7 +3816,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8851568269991073624}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:R_Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3848,7 +3848,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6675848939231810033}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:personajes_Geo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3880,7 +3880,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4013400764520179269}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:R_Leg_PV_CTL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3911,7 +3911,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8032734797183717684}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:Spine1_Ctrl_offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3943,7 +3943,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3755047611557758891}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:L_Hand_Ctrl_extra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3975,7 +3975,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8514842708151765616}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:R_Hand_Ctrl_extra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4007,7 +4007,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7584506460091649037}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:L_Arm_Ctrl_offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4039,7 +4039,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8067216591501627826}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:Hips_Ctrl_offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4071,7 +4071,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6896684599589348665}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:Spine2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4103,7 +4103,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9037299541481313232}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:Chest_Ctrl_extra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4135,7 +4135,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1202198968404195249}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:Hips_Ctrl_extra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4167,7 +4167,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2381740557817409708}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:R_Ancle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4198,7 +4198,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4204728649077926698}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Riggs:L_Ancle_Ctrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}

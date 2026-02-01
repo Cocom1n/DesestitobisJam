@@ -60,6 +60,7 @@ public class CollectibleItem : MonoBehaviour, IRecolectable
         
         rb.isKinematic = false;
         col.enabled = true;
+        col.isTrigger = false;
         rb.useGravity = true;
         Debug.Log($"Objeto {gameObject.name} soltado");
     }
@@ -68,7 +69,7 @@ public class CollectibleItem : MonoBehaviour, IRecolectable
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Piso"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Terreno"))
         {
             if (rb != null) { rb.isKinematic = true; rb.useGravity = false; }
             if (col != null) col.isTrigger = true;

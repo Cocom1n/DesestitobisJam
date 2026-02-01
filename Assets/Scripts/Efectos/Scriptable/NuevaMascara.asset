@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b632aa352e0e5794db303ebd52ebd59e, type: 3}
   m_Name: NuevaMascara
   m_EditorClassIdentifier: 
-  maskName: Maskara de Litio
-  icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  maskName: Litio Mask
+  icon: {fileID: -311279629, guid: 45acc1178846be146afc3c2e4e74fe27, type: 3}
   lifetime: 4
   effects:
   - effect: {fileID: 11400000, guid: 02f499b8a9f1ab14dae8d35a92ea2e20, type: 2}
