@@ -79,7 +79,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &741286872942838146
 Transform:
   m_ObjectHideFlags: 0
@@ -342,8 +342,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea63a19295f9874d88835d259e68483, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rango: 1.5
-  anguloHorizontal: 80
+  rango: 3
+  anguloHorizontal: 102.6
   anguloVertical: 65
   obstaculos:
     serializedVersion: 2
@@ -458,8 +458,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea63a19295f9874d88835d259e68483, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rango: 1.5
-  anguloHorizontal: 80
+  rango: 3
+  anguloHorizontal: 102.6
   anguloVertical: 65
   obstaculos:
     serializedVersion: 2
@@ -765,7 +765,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.8
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3385856779648239001
 MonoBehaviour:
@@ -1339,6 +1339,7 @@ GameObject:
   - component: {fileID: 800288249092224472}
   - component: {fileID: 7329527159043800127}
   - component: {fileID: 1994503258346829116}
+  - component: {fileID: 2071762684322872781}
   m_Layer: 7
   m_Name: Diablo1 (1)
   m_TagString: Enemy
@@ -1592,6 +1593,19 @@ MonoBehaviour:
   prefabSoga3D: {fileID: 959574610263118161}
   velocidadLanzamiento: 100
   tiempoVidaSoga: 0.48
+--- !u!114 &2071762684322872781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2398921744567214380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff70e9497e58be49b195f9612b0cd36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intervaloAtaque: 2
 --- !u!1 &2655933571799949321
 GameObject:
   m_ObjectHideFlags: 0

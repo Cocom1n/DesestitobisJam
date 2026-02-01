@@ -20,11 +20,11 @@ public class SerElectrocutado : MonoBehaviour, IElectrocutable
     {
         if (vidaActual <= 0) return;
 
-        vidaActual--;
+        vidaActual -= 2;
 
         if (fxParticulasHielos != null)
         {
-            fxParticulasHielos.Emit(1);
+            fxParticulasHielos.Emit(2);
         }
 
         AlCambiarVida?.Invoke(vidaActual); 
