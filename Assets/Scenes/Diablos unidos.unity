@@ -3165,6 +3165,10 @@ PrefabInstance:
       propertyPath: camaraPrincipal
       value: 
       objectReference: {fileID: 1230270474}
+    - target: {fileID: 2838986721968171173, guid: 6176f4d70ecadd847a18eaec4644ad27, type: 3}
+      propertyPath: capaSuelo.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 2890962174671229090, guid: 6176f4d70ecadd847a18eaec4644ad27, type: 3}
       propertyPath: m_Layer
       value: 6
