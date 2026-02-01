@@ -8464,6 +8464,7 @@ MonoBehaviour:
   particulas: {fileID: 2773926872763915033}
   intervaloElectrocucion: 2
   duracionArea: 0.5
+  sonidoElectrocucion: {fileID: 8300000, guid: e571ee2a20d415a4f9add57aaaf1d78d, type: 3}
 --- !u!114 &7395526646769522331
 MonoBehaviour:
   m_ObjectHideFlags: 0
