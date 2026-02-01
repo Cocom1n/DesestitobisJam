@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Electrocutar : MonoBehaviour
 {
-    [SerializeField] private float intervaloAtaque = 5f;
+    [SerializeField] private float intervaloAtaque = 2f;
     private float timer = 0f;
     private bool puedeAtacar = false;
 
