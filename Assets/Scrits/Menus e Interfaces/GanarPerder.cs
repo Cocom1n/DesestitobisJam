@@ -12,7 +12,9 @@ public class GanarPerder : MonoBehaviour
 
     [SerializeField] private GameObject[] objetosADesactivar;
 
-
+      [Header("Audio")]
+    [SerializeField] private AudioSource musicaFondo;     
+    [SerializeField] private AudioSource sonidoDerrota;   
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -30,12 +32,18 @@ public class GanarPerder : MonoBehaviour
 
     private void MostrarPanelPerder()
     {
+            Time.timeScale = 0f;
         foreach (GameObject objeto in objetosADesactivar)
         {
             if (objeto != null)
             {
                 objeto.SetActive(false);
             }
+            if (musicaFondo != null && musicaFondo.isPlaying)
+            musicaFondo.Stop();
+               if (sonidoDerrota != null)
+            sonidoDerrota.Play();
+
         }
 
         panelPerder.SetActive(true);
