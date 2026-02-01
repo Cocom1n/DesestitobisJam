@@ -108,11 +108,11 @@ public class DisparoBombuchas : MonoBehaviour
         modeloNormal.SetActive(false);
         modeloDisparo.SetActive(true);
 
-        Animator animDisparo = modeloDisparo.GetComponent<Animator>();
+        /*Animator animDisparo = modeloDisparo.GetComponent<Animator>();
         if (animDisparo != null)
         {
             animDisparo.Play("Lanzar", 0, 0f);
-        }
+        }*/
         yield return new WaitForSeconds(duracionAnimacionDisparo);
 
         modeloDisparo.SetActive(false);
