@@ -835,7 +835,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 7242397beafc9d3469aeb7c0aa4df020, type: 3}
   m_Resource: {fileID: 8300000, guid: 7242397beafc9d3469aeb7c0aa4df020, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.478
+  m_Volume: 0.318
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2504,6 +2504,7 @@ GameObject:
   - component: {fileID: 286757766}
   - component: {fileID: 286757768}
   - component: {fileID: 286757767}
+  - component: {fileID: 286757769}
   m_Layer: 8
   m_Name: Cube.022 (1)
   m_TagString: Pared
@@ -2583,6 +2584,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 286757765}
   m_Mesh: {fileID: 1353746659569323740, guid: af2d91d3a818dc4478af96544e2d3e74, type: 3}
+--- !u!65 &286757769
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286757765}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.078567475, y: 0.109087236, z: 0.036905937}
+  m_Center: {x: -0.038932342, y: -0.012885058, z: 0.018325748}
 --- !u!1 &302835794
 GameObject:
   m_ObjectHideFlags: 0
@@ -5128,8 +5150,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.8404354, y: 0.069847964, z: 0.037478004}
-  m_Center: {x: 0.38086638, y: 0.017182576, z: 0.008739004}
+  m_Size: {x: 0.8404354, y: 0.07561749, z: 0.037478004}
+  m_Center: {x: 0.38086638, y: 0.014297829, z: 0.008739004}
 --- !u!1 &555344735
 GameObject:
   m_ObjectHideFlags: 0
@@ -6021,6 +6043,7 @@ GameObject:
   - component: {fileID: 692906899}
   - component: {fileID: 692906901}
   - component: {fileID: 692906900}
+  - component: {fileID: 692906902}
   m_Layer: 8
   m_Name: Cube.013 (1)
   m_TagString: Pared
@@ -6100,6 +6123,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 692906898}
   m_Mesh: {fileID: 7807538432633192378, guid: af2d91d3a818dc4478af96544e2d3e74, type: 3}
+--- !u!65 &692906902
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 692906898}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.078567475, y: 0.09822924, z: 0.036905926}
+  m_Center: {x: -0.038932413, y: -0.007455921, z: 0.018325752}
 --- !u!4 &693155226 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5789710779534249469, guid: c8bab4a165212db4881d032e01ae2b69, type: 3}
@@ -13463,7 +13507,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5153839043055539613, guid: f60359fb56406b44999f56f09e8ed073, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.10809326
+      value: -0.1081543
       objectReference: {fileID: 0}
     - target: {fileID: 5153839043055539613, guid: f60359fb56406b44999f56f09e8ed073, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -13607,7 +13651,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7028993294494659084, guid: f60359fb56406b44999f56f09e8ed073, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.10809326
+      value: -0.1081543
       objectReference: {fileID: 0}
     - target: {fileID: 7028993294494659084, guid: f60359fb56406b44999f56f09e8ed073, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -16956,8 +17000,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.84888786, y: 0.054375723, z: 0.036905937}
-  m_Center: {x: -0.39219594, y: 0.01447075, z: 0.018325748}
+  m_Size: {x: 0.84888786, y: 0.056152772, z: 0.036905937}
+  m_Center: {x: -0.39219594, y: 0.013582225, z: 0.018325748}
 --- !u!1 &1978257020
 GameObject:
   m_ObjectHideFlags: 0
