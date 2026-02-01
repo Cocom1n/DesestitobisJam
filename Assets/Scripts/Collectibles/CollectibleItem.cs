@@ -60,8 +60,20 @@ public class CollectibleItem : MonoBehaviour, IRecolectable
         
         rb.isKinematic = false;
         col.enabled = true;
+        rb.useGravity = true;
         Debug.Log($"Objeto {gameObject.name} soltado");
     }
 
     public GameObject ObtenerGameObject() => gameObject;
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Piso"))
+        {
+            if (rb != null) { rb.isKinematic = true; rb.useGravity = false; }
+            if (col != null) col.isTrigger = true;
+
+            Debug.Log($"Objeto {gameObject.name} ha colisionado con el layer 'Default'");
+        }
+    }
 }
