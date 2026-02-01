@@ -6742,8 +6742,8 @@ Transform:
   m_GameObject: {fileID: 4619192095318793606}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.20655, y: -0.951, z: 0.10959}
-  m_LocalScale: {x: 57.67057, y: 57.67057, z: 57.67057}
+  m_LocalPosition: {x: -0.19169, y: -0.886, z: 0.10268}
+  m_LocalScale: {x: 53.592686, y: 53.592686, z: 53.592686}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1160188047027792684}
@@ -8464,6 +8464,7 @@ MonoBehaviour:
   particulas: {fileID: 2773926872763915033}
   intervaloElectrocucion: 2
   duracionArea: 0.5
+  sonidoElectrocucion: {fileID: 8300000, guid: e571ee2a20d415a4f9add57aaaf1d78d, type: 3}
 --- !u!114 &7395526646769522331
 MonoBehaviour:
   m_ObjectHideFlags: 0

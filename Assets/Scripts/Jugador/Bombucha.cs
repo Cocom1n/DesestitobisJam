@@ -5,12 +5,16 @@ public class Bombucha : MonoBehaviour
     private Rigidbody rb;
     private void Awake() => rb = GetComponent<Rigidbody>();
     [SerializeField] private int danio = 5;
+    [SerializeField] private AudioClip sonidoExplosion;
+
     private void OnCollisionEnter(Collision collision)
     {
         IDaniable daniable = collision.transform.GetComponent<IDaniable>();
         if(daniable != null)
         {
             daniable.RecibirDanio(danio);
+            AudioSource.PlayClipAtPoint(sonidoExplosion, transform.position);
+
         }
         Desactivar();
     }
