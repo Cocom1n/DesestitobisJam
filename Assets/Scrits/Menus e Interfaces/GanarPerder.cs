@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class GanarPerder : MonoBehaviour
 {
     //  TODABIA NO HAY CONDICION DE VICTORIA
-    [SerializeField] private string nombreEscenaJuego;
+   private string nombreEscenaJuego;
     //[SerializeField] private GameObject panelGanar;
     [SerializeField] private GameObject panelPerder;
 
@@ -51,7 +51,7 @@ public class GanarPerder : MonoBehaviour
 
     public void VolverAlMenu()
     {
-        SceneManager.LoadScene(nombreEscenaJuego);
+        SceneManager.LoadScene("MenuPrincipal");
     }
 
     public void SalirDelJuego()
