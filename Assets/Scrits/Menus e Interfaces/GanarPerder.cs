@@ -10,6 +10,8 @@ public class GanarPerder : MonoBehaviour
 
     [SerializeField] private SerElectrocutado ScriptJugador;
 
+    [SerializeField] private GameObject[] objetosADesactivar;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,6 +30,14 @@ public class GanarPerder : MonoBehaviour
 
     private void MostrarPanelPerder()
     {
+        foreach (GameObject objeto in objetosADesactivar)
+        {
+            if (objeto != null)
+            {
+                objeto.SetActive(false);
+            }
+        }
+
         panelPerder.SetActive(true);
     }
 
