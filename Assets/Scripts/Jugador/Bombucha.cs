@@ -26,11 +26,18 @@ public class Bombucha : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
         rb.AddForce(fuerza, ForceMode.Impulse);
         
+        Invoke(nameof(SonidoSinInpacto),1.9f);
         Invoke(nameof(Desactivar), 2f);
+        
     }
     private void Desactivar()
     {
         CancelInvoke();
         gameObject.SetActive(false);
+    }
+
+    private void SonidoSinInpacto()
+    {
+        AudioSource.PlayClipAtPoint(sonidoExplosion, transform.position);
     }
 }

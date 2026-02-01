@@ -13,6 +13,8 @@ public class CondicionVictoria : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textoHielosVictoria;
     [SerializeField] private SerElectrocutado jugador;
 
+    [SerializeField] private GameObject[] objetosADesactivar;
+
     private float tiempoRestante;
     private bool contadorActivo = false;
     private bool juegoTerminado = false;
@@ -58,6 +60,7 @@ public class CondicionVictoria : MonoBehaviour
 
     public void MostrarVictoria()
     {
+        
         if (juegoTerminado) return;
 
         juegoTerminado = true;
@@ -71,6 +74,14 @@ public class CondicionVictoria : MonoBehaviour
         if (textoHielosVictoria != null && jugador != null)
         {
             textoHielosVictoria.text = "Hielos: " + jugador.ObtenerVidaActual();
+        }
+
+        foreach (GameObject objeto in objetosADesactivar)
+        {
+            if (objeto != null)
+            {
+                objeto.SetActive(false);
+            }
         }
 
         //Time.timeScale = 0f;
@@ -87,6 +98,14 @@ public class CondicionVictoria : MonoBehaviour
         if (panelDerrota != null)
         {
             panelDerrota.SetActive(true);
+        }
+        
+        foreach (GameObject objeto in objetosADesactivar)
+        {
+            if (objeto != null)
+            {
+                objeto.SetActive(false);
+            }
         }
 
         //Time.timeScale = 0f;

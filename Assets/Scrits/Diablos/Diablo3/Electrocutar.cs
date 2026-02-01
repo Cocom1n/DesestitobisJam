@@ -2,35 +2,48 @@ using UnityEngine;
 
 public class Electrocutar : MonoBehaviour
 {
+    [SerializeField] private float intervaloAtaque = 5f;
+    private float timer = 0f;
+    private bool puedeAtacar = false;
+
+    void Start()
+    {
+        timer = intervaloAtaque;
+    }
+
+    void Update()
+    {
+        timer -= Time.deltaTime;
+        if (timer <= 0f)
+        {
+            timer = intervaloAtaque;
+            puedeAtacar = true;
+        }
+    }
 
     public void OnCollisionEnter(Collision collision)
     {
+        timer -= Time.deltaTime;
+        if (timer <= 0f)
+        {
+            timer = intervaloAtaque;
+            puedeAtacar = true;
+        }
         bool auz = collision.gameObject.TryGetComponent<IElectrocutable>(out IElectrocutable electrocutable);
-        if (auz)
+        if (auz && puedeAtacar)
         {
             electrocutable.SoltarHielos();
-            Debug.Log("Electrocutado");
+            puedeAtacar = false;
         }
     }
 
     public void OnTriggerEnter(Collider other)
     {
         bool auz = other.gameObject.TryGetComponent<IElectrocutable>(out IElectrocutable electrocutable);
-        if (auz)
+        if (auz && puedeAtacar)
         {
             electrocutable.SoltarHielos();
-            Debug.Log("Electrocutado");
+            puedeAtacar = false;
         }
-    }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
