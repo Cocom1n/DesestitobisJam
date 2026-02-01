@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b632aa352e0e5794db303ebd52ebd59e, type: 3}
-  m_Name: NuevaMascara 1
+  m_Name: Cobre
   m_EditorClassIdentifier: 
-  maskName: Litio
+  maskName: Cobre Mask
   icon: {fileID: 64105240, guid: 45acc1178846be146afc3c2e4e74fe27, type: 3}
-  lifetime: 2
+  lifetime: 5
   effects:
   - effect: {fileID: 11400000, guid: 02f499b8a9f1ab14dae8d35a92ea2e20, type: 2}
     value: 10

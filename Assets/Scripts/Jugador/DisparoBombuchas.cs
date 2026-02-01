@@ -27,6 +27,8 @@ public class DisparoBombuchas : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textoMunicion;
     private Color colorNormal = Color.white;
     private Color colorRecargando = new Color(1f, 1f, 1f, 0.3f);
+    [SerializeField] private Sprite[] spritesBombuchas; // sprites para las 3 bombuchas.
+
 
     private Animator anim;
     [SerializeField] private GameObject modeloNormal;
@@ -92,7 +94,7 @@ public class DisparoBombuchas : MonoBehaviour
                         StartCoroutine(Recargar());
                     }
 
-                    break; 
+                    break;
                 }
             }
 
@@ -107,7 +109,7 @@ public class DisparoBombuchas : MonoBehaviour
         modeloDisparo.SetActive(true);
 
         Animator animDisparo = modeloDisparo.GetComponent<Animator>();
-        if(animDisparo != null)
+        if (animDisparo != null)
         {
             animDisparo.Play("Lanzar", 0, 0f);
         }
@@ -133,42 +135,46 @@ public class DisparoBombuchas : MonoBehaviour
     IEnumerator Recargar()
     {
         estaRecargando = true;
-        
+        ActualizarUI();
+
         if (imagenBombucha != null)
         {
             //imagenBombucha.color = colorRecargando;
             imagenBombucha.fillAmount = 0f;
         }
-        
+
         if (textoMunicion != null)
         {
             textoMunicion.text = "0";
         }
 
         float tiempoTranscurrido = 0f;
-        
+
         while (tiempoTranscurrido < tiempoRecarga)
         {
             tiempoTranscurrido += Time.deltaTime;
             float progreso = tiempoTranscurrido / tiempoRecarga;
-            
+
             if (imagenBombucha != null)
             {
                 imagenBombucha.fillAmount = progreso;
             }
-            
+
             yield return null;
         }
 
         municionActual = maxMunicion;
         estaRecargando = false;
-        
+
         if (imagenBombucha != null)
         {
             imagenBombucha.fillAmount = 1f;
             imagenBombucha.color = colorNormal;
         }
-        
+        if (textoMunicion != null)
+        {
+            textoMunicion.text = municionActual.ToString();
+        }
         ActualizarUI();
     }
 
@@ -176,13 +182,27 @@ public class DisparoBombuchas : MonoBehaviour
     {
         if (textoMunicion != null)
         {
-            textoMunicion.text = municionActual.ToString();
+            if (estaRecargando)
+            {
+                textoMunicion.text = "0"; 
+            }
+            else
+            {
+                textoMunicion.text = municionActual.ToString(); 
+            }
         }
 
-        if (imagenBombucha != null && !estaRecargando)
+        if (imagenBombucha != null)
         {
-            imagenBombucha.fillAmount = 1f;
-            imagenBombucha.color = colorNormal;
+            if (estaRecargando)
+            {
+                imagenBombucha.sprite = spritesBombuchas[2]; // 3 bombuchas 
+            }
+            else
+            {
+                int index = Mathf.Clamp(municionActual - 1, 0, spritesBombuchas.Length - 1);
+                imagenBombucha.sprite = spritesBombuchas[index];
+            }
         }
     }
 
