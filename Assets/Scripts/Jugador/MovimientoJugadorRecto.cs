@@ -5,6 +5,7 @@ public class MovimientoJugadorRecto : MonoBehaviour
 {
     [SerializeField] private PlayerStats stats;
     [SerializeField] private Transform camara;
+    private Animator anim;
 
     private void Awake()
     {
@@ -13,6 +14,7 @@ public class MovimientoJugadorRecto : MonoBehaviour
         {
             stats = GetComponent<PlayerStats>();
         }
+        anim = GetComponentInChildren<Animator>();
     }
 
     /** Calcula la direccion de movimiento usando la velocidad de PlayerStats */
@@ -24,6 +26,12 @@ public class MovimientoJugadorRecto : MonoBehaviour
         
         /** Usar el stat topSpeed del jugador */
         float velocidadActual = stats != null ? stats.GetTopSpeed() : 5f;
+
+        if(anim != null)
+        {
+            float intensidadMovimiento = input.magnitude;
+            anim.SetFloat("Velocidad", intensidadMovimiento);
+        }
         
         return direccion.normalized * velocidadActual;
     }

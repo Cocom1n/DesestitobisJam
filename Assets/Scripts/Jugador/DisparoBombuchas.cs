@@ -33,9 +33,15 @@ public class DisparoBombuchas : MonoBehaviour
     private Color colorNormal = Color.white;
     private Color colorRecargando = new Color(1f, 1f, 1f, 0.3f);
 
+    private Animator anim;
+    [SerializeField] private GameObject modeloNormal;
+    [SerializeField] private GameObject modeloDisparo;
+    [SerializeField] private float duracionAnimacionDisparo = 0.8f;
+
     void Start()
     {
         municionActual = maxMunicion;
+        anim = GetComponentInChildren<Animator>();
         ActualizarUI();
     }
     void Update()
@@ -51,6 +57,12 @@ public class DisparoBombuchas : MonoBehaviour
         Ray ray = camaraPrincipal.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
+            /*if (anim != null)
+            {
+                anim.SetTrigger("Disparar");
+            }*/
+            StartCoroutine(SecuenciaDisparo());
+
             Vector3 direccionHaciaMouse = hit.point - transform.position;
             direccionHaciaMouse.y = 0;
 
@@ -91,6 +103,25 @@ public class DisparoBombuchas : MonoBehaviour
 
         }
     }
+
+    IEnumerator SecuenciaDisparo()
+    {
+        modeloNormal.SetActive(false);
+        modeloDisparo.SetActive(true);
+
+        Animator animDisparo = modeloDisparo.GetComponent<Animator>();
+        if(animDisparo != null)
+        {
+            animDisparo.Play("Lanzar", 0, 0f);
+        }
+        yield return new WaitForSeconds(duracionAnimacionDisparo);
+
+        modeloDisparo.SetActive(false);
+        modeloNormal.SetActive(true);
+    }
+
+
+
 
     private void CambiarColorFlecha()
     {
