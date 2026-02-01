@@ -65,13 +65,13 @@ public class DiabloIA : MonoBehaviour
         return false;
     }
 
-    /** Método que es llamado cuando el Diablo muere */
+    /** Metodo que es llamado cuando el Diablo muere */
     public void Matar()
     {
         CambiarEstado(EstadoMuerte);
     }
 
-    /** Método que es llamado cuando el Diablo debe reaparecer */
+    /** Metodo que es llamado cuando el Diablo debe reaparecer */
     public void Reaparecer()
     {
         CambiarEstado(EstadoReaparicion);

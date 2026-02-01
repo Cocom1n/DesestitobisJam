@@ -8,11 +8,16 @@ public class DiabloAtaque : MonoBehaviour
     [SerializeField] private float cooldown = 2f;
 
     private bool enCooldown;
-    [SerializeField] private SerElectrocutado ScriptJugador;
-    [SerializeField] private InteractorJugador interactorJugador;
+    private SerElectrocutado ScriptJugador;
+    private InteractorJugador interactorJugador;
 
     private void Start()
     {
+        GameObject jugador = GameObject.FindGameObjectWithTag("Player");
+
+        ScriptJugador = jugador.GetComponent<SerElectrocutado>();
+        interactorJugador = jugador.GetComponent<InteractorJugador>();
+
         // suscribirse al evento AlMorir
         if (ScriptJugador != null)
         {
@@ -27,12 +32,16 @@ public class DiabloAtaque : MonoBehaviour
 
     public void IntentarAtacar(Transform puntoMano, IAgarraObjetos objetivo)
     {
-        if (enCooldown || objetivo == null) return;
+        if (enCooldown || objetivo == null)
+        {
+            //Debug.LogWarning("El objetivo es null, no se puede atacar.");
+            return;
+        }
 
         // Antes de atacar, verificar si el objetivo tiene un objeto en la mano
-        if (objetivo.TieneObjeto)
+        if (objetivo is SerElectrocutado jugador)
         {
-            // Soltar el objeto y aplicar el mensaje de -1 de Hielo
+            jugador.SoltarHielos();
             //objetivo.PerderObjeto();
         }
 
@@ -44,6 +53,7 @@ public class DiabloAtaque : MonoBehaviour
         enCooldown = true;
 
         soga.LanzarSoga(puntoDisparo.position, puntoMano, objetivo);
+        Debug.Log("Golpeando al " + objetivo);
 
         yield return new WaitForSeconds(cooldown);
         enCooldown = false;

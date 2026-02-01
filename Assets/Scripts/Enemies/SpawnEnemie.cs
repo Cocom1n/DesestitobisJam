@@ -37,11 +37,10 @@ public class SpawnEnemie : MonoBehaviour
         {
             Transform puntoElegido = puntosSpawn[Random.Range(0, puntosSpawn.Length)];
             Instantiate(candidato, puntoElegido.position, puntoElegido.rotation);
-            Debug.Log($"Spawned {candidato.name}. Total en escena: {conteo + 1}");
         }
         else
         {
-            Debug.Log($"Límite alcanzado para {candidato.name}");
+            //Debug.Log($"Límite alcanzado para {candidato.name}");
         }
     }
 

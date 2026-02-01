@@ -29,6 +29,8 @@ public class Electrocutar : MonoBehaviour
             timer = intervaloAtaque;
             puedeAtacar = true;
         }
+        Debug.Log("buscando colision");
+
         bool auz = collision.gameObject.TryGetComponent<IElectrocutable>(out IElectrocutable electrocutable);
         if (auz && puedeAtacar)
         {

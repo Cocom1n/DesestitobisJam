@@ -73,7 +73,6 @@ GameObject:
   m_Component:
   - component: {fileID: 741286872942838146}
   - component: {fileID: 6751636468171937594}
-  - component: {fileID: 6907011321760833371}
   m_Layer: 0
   m_Name: frente
   m_TagString: Untagged
@@ -203,21 +202,6 @@ LineRenderer:
   m_UseWorldSpace: 0
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!114 &6907011321760833371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 212714446784132393}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c44b653c097ef7843940f79317503d38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefabSoga3D: {fileID: 959574610263118161}
-  velocidadLanzamiento: 100
-  tiempoVidaSoga: 0.3
 --- !u!1 &345845545214556312
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,7 +350,7 @@ MonoBehaviour:
     m_Bits: 0
   objetivos:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 72
 --- !u!1 &458103739047639559
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,7 +466,7 @@ MonoBehaviour:
     m_Bits: 0
   objetivos:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 72
 --- !u!1 &562047285184711210
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,6 +670,7 @@ GameObject:
   - component: {fileID: 5783775069937444488}
   - component: {fileID: 6137398926954111212}
   - component: {fileID: 8468010581634635548}
+  - component: {fileID: 3385856779648239001}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -782,6 +767,19 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3385856779648239001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 959574610263118161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff70e9497e58be49b195f9612b0cd36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intervaloAtaque: 1
 --- !u!1 &1035251686383408868
 GameObject:
   m_ObjectHideFlags: 0
@@ -1340,6 +1338,7 @@ GameObject:
   - component: {fileID: 8283192468906824763}
   - component: {fileID: 800288249092224472}
   - component: {fileID: 7329527159043800127}
+  - component: {fileID: 1994503258346829116}
   m_Layer: 0
   m_Name: Diablo1 (1)
   m_TagString: Untagged
@@ -1514,11 +1513,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb05d8e1c84e84748b432081b64fce97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soga: {fileID: 6907011321760833371}
+  soga: {fileID: 1994503258346829116}
   puntoDisparo: {fileID: 7011125103276072542}
   cooldown: 2
-  ScriptJugador: {fileID: 0}
-  interactorJugador: {fileID: 0}
 --- !u!114 &1432407813899453606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1580,6 +1577,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vidaMaxima: 10
+--- !u!114 &1994503258346829116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2398921744567214380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c44b653c097ef7843940f79317503d38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabSoga3D: {fileID: 959574610263118161}
+  velocidadLanzamiento: 100
+  tiempoVidaSoga: 0.48
 --- !u!1 &2655933571799949321
 GameObject:
   m_ObjectHideFlags: 0

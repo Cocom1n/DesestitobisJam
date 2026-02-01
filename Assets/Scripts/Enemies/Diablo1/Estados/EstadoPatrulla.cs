@@ -9,6 +9,7 @@ public class EstadoPatrulla : EstadoDiablo
         if (cerebro.BuscarObjetivo())
         {
             cerebro.CambiarEstado(cerebro.EstadoAtaque);
+            Debug.Log("Entrando a Atacar");
             return;
         }
 

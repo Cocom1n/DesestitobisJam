@@ -10,6 +10,11 @@ public class EstadoAtaque : EstadoDiablo
             cerebro.CambiarEstado(cerebro.EstadoPatrulla);
             return;
         }
+        /** Ataque con cooldown */
+        cerebro.Ataque.IntentarAtacar(
+            cerebro.PuntoManoObjetivo,
+            cerebro.ObjetivoActual
+        );
 
         /** Seguir moviendose mientras ataca */
         Vector3 _dir = cerebro.Movimiento.Patrullar();
@@ -18,10 +23,5 @@ public class EstadoAtaque : EstadoDiablo
             cerebro.Rotacion.RotarHacia(cerebro.transform.position + _dir);
         }
 
-        /** Ataque con cooldown */
-        cerebro.Ataque.IntentarAtacar(
-            cerebro.PuntoManoObjetivo,
-            cerebro.ObjetivoActual
-        );
     }
 }
