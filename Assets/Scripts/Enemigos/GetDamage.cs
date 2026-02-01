@@ -21,6 +21,7 @@ public class GetDamage : MonoBehaviour, IDaniable
 
     public void RecibirDanio(int cantidad)
     {
+        if (!this.enabled) return;
         vidaActual -= cantidad;
         if(vidaActual <= 0)
         {
