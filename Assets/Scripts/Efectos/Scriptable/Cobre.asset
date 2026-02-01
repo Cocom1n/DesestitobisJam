@@ -14,11 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maskName: Cobre Mask
   icon: {fileID: 64105240, guid: 45acc1178846be146afc3c2e4e74fe27, type: 3}
-  lifetime: 5
+  lifetime: 4
   effects:
-  - effect: {fileID: 11400000, guid: 02f499b8a9f1ab14dae8d35a92ea2e20, type: 2}
-    value: 10
-    isPermanent: 0
   - effect: {fileID: 11400000, guid: 72a4b447d8f748f48b8df3a5cb0318e6, type: 2}
-    value: 2
-    isPermanent: 1
+    value: 1
+    isPermanent: 0

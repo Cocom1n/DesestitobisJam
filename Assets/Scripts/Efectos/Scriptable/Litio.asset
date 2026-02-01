@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maskName: Litio Mask
   icon: {fileID: -311279629, guid: 45acc1178846be146afc3c2e4e74fe27, type: 3}
-  lifetime: 0
+  lifetime: 3
   effects:
   - effect: {fileID: 11400000, guid: 02f499b8a9f1ab14dae8d35a92ea2e20, type: 2}
-    value: 6
+    value: 5
     isPermanent: 0
