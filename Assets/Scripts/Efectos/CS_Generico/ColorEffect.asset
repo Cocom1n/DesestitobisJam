@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9631f8dee2499be48ab045df5e69bbbc, type: 3}
   m_Name: ColorEffect
   m_EditorClassIdentifier: 
-  effectColor: {r: 0, g: 0, b: 1, a: 1}
+  effectColor: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
