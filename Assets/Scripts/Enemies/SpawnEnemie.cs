@@ -7,7 +7,7 @@ public class SpawnEnemie : MonoBehaviour
     public List<GameObject> prefabsEnemigos;
     public Transform[] puntosSpawn;
 
-    public float tiempoEntreSpawns = 2f;
+    public float tiempoEntreSpawns = 0.5f;
     public bool spawnActivo = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,7 +33,7 @@ public class SpawnEnemie : MonoBehaviour
 
         int conteo = ContarEnemigosPorNombre(candidato.name);
 
-        if (conteo < 5)
+        if (conteo < 15)
         {
             Transform puntoElegido = puntosSpawn[Random.Range(0, puntosSpawn.Length)];
             Instantiate(candidato, puntoElegido.position, puntoElegido.rotation);
