@@ -43,7 +43,7 @@ Animator:
   m_GameObject: {fileID: 118621812160805613}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f54d5c1e98a22c44e97a141d853d87b1, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3d231b58b57e1224ebf24b517b81c81b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -630,7 +630,7 @@ GameObject:
   - component: {fileID: 3503153219288411841}
   - component: {fileID: 8632844758841826891}
   m_Layer: 7
-  m_Name: HumanitoNormal
+  m_Name: HumanitoNormal2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
