@@ -7,6 +7,7 @@ public class ElectrocutarEnArea : MonoBehaviour
     [SerializeField] private GameObject particulas;
     [SerializeField] private float intervaloElectrocucion = 5f;
     [SerializeField] private float duracionArea = 0.5f;
+    [SerializeField] private AudioClip sonidoElectrocucion;
 
     private float temporizador;
 
@@ -38,6 +39,7 @@ public class ElectrocutarEnArea : MonoBehaviour
         {
             areaElectrocucion.SetActive(true);
             particulas.SetActive(true);
+            AudioSource.PlayClipAtPoint(sonidoElectrocucion, transform.position);
             Invoke(nameof(DesactivarAreaElectrocucion), duracionArea);
         }
     }

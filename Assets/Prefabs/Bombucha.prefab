@@ -149,3 +149,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3bdc41a83d6db945828104ac19bdc3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  danio: 5
+  sonidoExplosion: {fileID: 8300000, guid: 03fe3d22f72c2aa4d906f497dd433bdb, type: 3}
