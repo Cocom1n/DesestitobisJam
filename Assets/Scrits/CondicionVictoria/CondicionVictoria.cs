@@ -14,6 +14,10 @@ public class CondicionVictoria : MonoBehaviour
     [SerializeField] private SerElectrocutado jugador;
 
     [SerializeField] private GameObject[] objetosADesactivar;
+    [SerializeField] private AudioSource musicaVictoria;
+    [SerializeField] private AudioSource musicaFondo;
+
+
 
     private float tiempoRestante;
     private bool contadorActivo = false;
@@ -60,6 +64,7 @@ public class CondicionVictoria : MonoBehaviour
 
     public void MostrarVictoria()
     {
+        Time.timeScale = 0f;
         
         if (juegoTerminado) return;
 
@@ -83,9 +88,16 @@ public class CondicionVictoria : MonoBehaviour
                 objeto.SetActive(false);
             }
         }
+        if (musicaFondo != null && musicaFondo.isPlaying)
+        {
+            musicaFondo.Stop();
+        }
+        if (musicaVictoria != null)
+         {
+            musicaVictoria.Play();
+         }
 
-        //Time.timeScale = 0f;
-
+        
     }
 
     public void MostrarDerrota()
@@ -107,8 +119,9 @@ public class CondicionVictoria : MonoBehaviour
                 objeto.SetActive(false);
             }
         }
+         
 
-        //Time.timeScale = 0f;
+        // Time.timeScale = 0f;
 
     }
 
